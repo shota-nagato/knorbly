@@ -36,3 +36,8 @@ group :development do
   gem "web-console"
   gem "hotwire-spark"
 end
+
+gem "dry-initializer"
+gem "tailwind_merge"
+gem "view_component"
+gem "view_component-contrib"

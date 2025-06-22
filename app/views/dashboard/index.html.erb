@@ -1,1 +1,33 @@
-<div class="">aaa</div>
+<div class="p-4 flex gap-4">
+  <%= component(:button) {"button"} %>
+  <%= component(:button, variant: :outline) {"outline"} %>
+  <%= component(:button, variant: :destructive) {"destructive"} %>
+  <%= component(:button, variant: :secondary) {"secondary"} %>
+  <%= component(:button, variant: :ghost) {"ghost"} %>
+  <%= component(:button, variant: :link) {"link"} %>
+  <%= component(:button, variant: :success) {"success"} %>
+  <%= component(:button, variant: :warning) {"warning"} %>
+  <%= component(:button, variant: :info) {"info"} %>
+</div>
+<div class="p-4 flex gap-4">
+  <%= component(:button) {"button"} %>
+  <%= component(:button, size: :lg) {"lg"} %>
+  <%= component(:button, size: :sm) {"sm"} %>
+  <%= component(:button, size: :icon) {"icon"} %>
+</div>
+<div class="p-4 flex gap-4">
+  <div class="text-text-primary">aaaaa</div>
+  <div class="text-text-secondary">aaaaa</div>
+  <div class="text-text-muted">aaaaa</div>
+  <div class="text-text-inactive">aaaaa</div>
+</div>
+<div class="p-4 flex gap-4">
+  <div class="w-8 h-8 border border-border"></div>
+  <div class="w-8 h-8 border border-border-hover"></div>
+  <div class="w-8 h-8 border border-border-focus"></div>
+</div>
+<div class="p-4 flex gap-4">
+  <div class="w-8 h-8 bg-background"></div>
+  <div class="w-8 h-8 bg-background-secondary"></div>
+  <div class="w-8 h-8 bg-background-muted"></div>
+</div>

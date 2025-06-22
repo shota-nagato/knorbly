@@ -20,6 +20,8 @@ Bundler.require(*Rails.groups)
 
 module Knorbly
   class Application < Rails::Application
+    config.autoload_paths << Rails.root.join("app", "views", "components")
+    config.view_component.preview_paths << Rails.root.join("app", "views", "components")
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 

@@ -1,7 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RSS リーダーサービス
+
+## 使用技術
+
+### 言語
+
+```
+Ruby v3.4.3
+Ruby on Rails v8.0.2
+Node.js v24.2.0
+```
+
+### その他
+
+- Tailwind CSS
+- ESBuild
+- PostgreSQL
 
 ## 環境構築
 
@@ -49,24 +64,6 @@ docker-compose run --rm web yarn install
 docker-compose up
 ```
 
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
 ## View Components
 
 このプロジェクトでは view_component を使用してコンポーネントベースの UI 開発を行っています。
@@ -87,5 +84,3 @@ rails g view_component Card title content
 ```
 
 このコマンドにより、コンポーネントクラスファイル（.rb）とテンプレートファイル（.html.erb）が自動生成されます。
-
-- ...

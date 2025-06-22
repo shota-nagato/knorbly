@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+  --color-orange: #DB7D3D;
+}

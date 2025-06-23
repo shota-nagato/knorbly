@@ -17,6 +17,9 @@ services:
       PGUSER: postgres
       PGPASSWORD: password
       PORT: 3000
+      SELENIUM_DRIVER_URL: http://selenium_chrome:4444/wd/hub
+      CAPYBARA_SERVER_HOST: rails
+      CAPYBARA_APP_HOST: http://rails
     volumes:
       - .:/rails
     ports:
@@ -25,6 +28,11 @@ services:
     tty: true
     depends_on:
       - postgres
+      - selenium_chrome
+  selenium_chrome:
+    image: seleniarm/standalone-chromium
+    ports:
+      - "4444:4444"
 
 volumes:
   postgres:

@@ -32,7 +32,7 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-playwright-driver"
+  gem "selenium-webdriver"
 end
 
 group :development do

@@ -22,14 +22,17 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 group :development, :test do
-  gem "erb_lint", require: false
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
-  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "erb_lint", require: false
+  gem "factory_bot_rails"
+  gem "rspec-rails"
   gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+end
+
+group :test do
+  gem "capybara"
+  gem "capybara-playwright-driver"
 end
 
 group :development do

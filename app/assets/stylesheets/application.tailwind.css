@@ -31,3 +31,17 @@
   --color-focus-ring: #007697;
   --color-focus-ring-offset: #fff;
 }
+
+@layer utilities {
+  .h1 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+
+  .h2 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+
+  .h3 {
+    @apply text-lg font-bold md:text-xl;
+  }
+}

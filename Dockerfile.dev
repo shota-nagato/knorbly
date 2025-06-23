@@ -43,5 +43,9 @@ RUN bundle install && \
 COPY package.json yarn.lock ./
 RUN yarn install --immutable
 
+# Install playwright dependencies
+RUN yarn playwright install-deps && \
+    yarn playwright install --with-deps chromium
+
 # Copy application code
 COPY . .

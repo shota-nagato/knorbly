@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+      - name: Install playwright browsers
+        run: |
+          yarn add @playwright/test
+          npx playwright install --with-deps chromium
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:

@@ -36,6 +36,7 @@ group :test do
 end
 
 group :development do
+  gem "annotaterb"
   gem "web-console"
   gem "hotwire-spark"
 end
@@ -44,3 +45,5 @@ gem "dry-initializer"
 gem "tailwind_merge"
 gem "view_component"
 gem "view_component-contrib"
+
+gem "bcrypt", "~> 3.1"

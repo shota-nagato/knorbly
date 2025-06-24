@@ -44,4 +44,12 @@
   .h3 {
     @apply text-lg font-bold md:text-xl;
   }
+
+  .body {
+    @apply text-sm font-semibold md:text-base;
+  }
+
+  .body-sm {
+    @apply text-xs font-semibold md:text-sm;
+  }
 }

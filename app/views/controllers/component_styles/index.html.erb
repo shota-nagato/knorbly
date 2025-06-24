@@ -1,0 +1,62 @@
+<div class="p-4">
+  <%= component(:heading, size: :h1, text: "スタイル") %>
+</div>
+
+<div class="flex flex-wrap items-center gap-4">
+  <div class="p-4 flex gap-4">
+    <div class="text-text-primary">text-primary</div>
+    <div class="text-text-secondary">text-secondary</div>
+    <div class="text-text-muted">text-muted</div>
+    <div class="text-text-inactive">text-inactive</div>
+  </div>
+  <div class="p-4 flex gap-4">
+    <div class="p-4 border border-border">border</div>
+    <div class="p-4 border border-border-hover">border-hover</div>
+    <div class="p-4 border border-border-focus">border-focus</div>
+  </div>
+  <div class="p-4 flex gap-4">
+    <div class="p-2 bg-background">background</div>
+    <div class="p-2 bg-background-secondary">background-secondary</div>
+    <div class="p-2 bg-background-muted">background-muted</div>
+  </div>
+  <div class="p-4 flex gap-4">
+    <div class="body">body</div>
+    <div class="body-sm">body-sm</div>
+  </div>
+</div>
+
+<div class="p-4 w-full">
+  <%= component(:heading, size: :h1, text: "コンポーネント") %>
+</div>
+<div class="p-4">
+  <%= component(:heading, size: :h2, text: "見出し") %>
+</div>
+<div class="p-4 flex gap-4">
+  <%= component(:heading, size: :h1, text: "h1") %>
+  <%= component(:heading, size: :h2, text: "h2") %>
+  <%= component(:heading, size: :h3, text: "h3") %>
+</div>
+<div class="p-4">
+  <%= component(:heading, size: :h2, text: "ボタン") %>
+</div>
+<div class="p-4 flex gap-4">
+  <%= component(:button) {"default"} %>
+  <%= component(:button, variant: :outline) {"outline"} %>
+  <%= component(:button, variant: :destructive) {"destructive"} %>
+  <%= component(:button, variant: :secondary) {"secondary"} %>
+  <%= component(:button, variant: :ghost) {"ghost"} %>
+  <%= component(:button, variant: :link) {"link"} %>
+  <%= component(:button, size: :lg) {"lg"} %>
+  <%= component(:button, size: :sm) {"sm"} %>
+  <%= component(:button, size: :icon) {"icon"} %>
+</div>
+<div class="p-4">
+  <%= component(:heading, size: :h2, text: "インプット") %>
+</div>
+<div class="p-4">
+  <%= form_with url: session_path, class: "md:pr-120" do |form| %>
+    <%= component(:input, size: :sm, form: form, label: :email, field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+    <%= component(:input, form: form, label: :email, field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+    <%= component(:input, size: :lg, form: form, label: :email, field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+  <% end %>
+</div>

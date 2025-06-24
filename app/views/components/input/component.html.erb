@@ -1,0 +1,2 @@
+<%= @form.label @label, class: "body-sm text-text-secondary" if @label.present? %>
+<%= @form.send(@field_type, @attribute_key, class: tw_merge(style(size:), class_name), placeholder: @placeholder, data: @data) %>

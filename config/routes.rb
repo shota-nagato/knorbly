@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
 
+  resources :component_styles, only: [ :index ]
+
   root "static#index"
 end

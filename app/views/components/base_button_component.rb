@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
-class Button::Component < ApplicationViewComponent
+class BaseButtonComponent < ApplicationViewComponent
   option :variant, default: proc { :default }
   option :size, default: proc { :default }
   option :disabled, default: proc { false }
   option :class_name, default: proc { "" }
-  option :tag, default: proc { :button }
 
   style do
-    base {
-      %w[inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0]
-    }
     variants {
       variant {
         default {
@@ -34,18 +30,29 @@ class Button::Component < ApplicationViewComponent
       }
       size {
         default {
-          %w[h-9 px-4 py-2]
+          %w[h-9 px-4]
         }
         sm {
-          %w[h-8 rounded-md px-3 text-xs]
+          %w[h-8 px-3]
         }
         lg {
-          %w[h-10 rounded-md px-8]
+          %w[h-10 px-8]
         }
         icon {
           "size-9"
         }
       }
+      disabled {
+        yes { %w[opacity-50 pointer-events-none] }
+      }
     }
+  end
+
+  def button_base_class
+    "%w[inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus-ring disabled:pointer-events-none disabled:opacity-50]"
+  end
+
+  def merged_class
+    tw_merge(button_base_class, style(variant:, size:, disabled:), class_name)
   end
 end

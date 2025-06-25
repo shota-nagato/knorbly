@@ -1,8 +1,10 @@
-<h1>Forgot your password?</h1>
-
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+<div class="flex items-center justify-center h-screen">
+  <div class="w-full lg:max-w-md md:max-w-sm sm:max-w-xs px-4">
+    <%= form_with url: passwords_path, class: "space-y-4" do |form| %>
+      <%= component(:input, form: form, label: :email, field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+      <%= component(:submit_button, form: form, text: "Email reset instructions", class_name: "w-full mt-2") %>
+    <% end %>
+  </div>
+</div>

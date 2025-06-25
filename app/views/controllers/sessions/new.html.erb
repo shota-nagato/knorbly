@@ -6,9 +6,7 @@
     <%= form_with url: session_path, class: "space-y-4" do |form| %>
       <%= component(:input, form: form, label: :email, field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
       <%= component(:input, form: form, label: :password, field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
-      <%= component(:button, tag: :div, class_name: "w-full mt-2") do %>
-        <%= form.submit "Sign in" %>
-      <% end %>
+      <%= component(:submit_button, form: form, text: "Sign in", class_name: "w-full mt-2") %>
     <% end %>
     <div class="mt-4">
       <%= link_to "Forgot password?", new_password_path %>

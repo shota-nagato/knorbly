@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import Toast__ComponentController from "./../../views/components/toast/component_controller"
+application.register("toast--component", Toast__ComponentController)

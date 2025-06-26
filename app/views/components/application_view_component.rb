@@ -7,6 +7,10 @@ class ApplicationViewComponent < ViewComponentContrib::Base
 
   private
 
+  def controller_name
+    self.class.name.underscore.tr("_", "-").gsub("/", "--")
+  end
+
   def tw_merge(*inputs)
     TailwindMerge::Merger.new.merge(inputs.join(" "))
   end

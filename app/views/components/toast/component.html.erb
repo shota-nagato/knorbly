@@ -1,0 +1,9 @@
+<div
+  class="<%= class_names(base_style, background_color) %>"
+  data-controller="<%= controller_name %>"
+  data-<%= controller_name %>-target="toast">
+  <%= helpers.icon(icon_name, css: icon_color) %>
+  <div class="<%= text_color %>">
+    <%= message %>
+  </div>
+</div>

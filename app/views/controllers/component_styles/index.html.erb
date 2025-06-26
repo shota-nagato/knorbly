@@ -39,17 +39,19 @@
 <div class="p-4">
   <%= component(:heading, size: :h2, text: "ボタン") %>
 </div>
-<div class="p-4 flex gap-4">
-  <%= component(:button) {"default"} %>
-  <%= component(:button, variant: :outline) {"outline"} %>
-  <%= component(:button, variant: :destructive) {"destructive"} %>
-  <%= component(:button, variant: :secondary) {"secondary"} %>
-  <%= component(:button, variant: :ghost) {"ghost"} %>
-  <%= component(:button, variant: :link) {"link"} %>
-  <%= component(:button, size: :lg) {"lg"} %>
-  <%= component(:button, size: :sm) {"sm"} %>
-  <%= component(:button, size: :icon) {"icon"} %>
-</div>
+<%= form_with url: "#" do |form| %>
+  <div class="p-4 flex gap-4">
+    <%= component(:submit_button, form: form, text: "default") %>
+    <%= component(:submit_button, form: form, variant: :outline, text: "outline") %>
+    <%= component(:submit_button, form: form, variant: :destructive, text: "destructive") %>
+    <%= component(:submit_button, form: form, variant: :secondary, text: "secondary") %>
+    <%= component(:submit_button, form: form, variant: :ghost, text: "ghost") %>
+    <%= component(:submit_button, form: form, variant: :link, text: "link") %>
+    <%= component(:submit_button, form: form, size: :lg, text: "lg") %>
+    <%= component(:submit_button, form: form, size: :sm, text: "sm") %>
+    <%= component(:submit_button, form: form, size: :icon, text: "icon") %>
+  </div>
+<% end %>
 <div class="p-4">
   <%= component(:heading, size: :h2, text: "インプット") %>
 </div>

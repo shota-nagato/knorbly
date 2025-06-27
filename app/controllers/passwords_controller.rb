@@ -10,7 +10,7 @@ class PasswordsController < ApplicationController
 
     if user.present?
       PasswordsMailer.reset(user).deliver_later
-      redirect_to new_session_path, notice: t(".sent_instructions")
+      redirect_to login_path, notice: t(".sent_instructions")
     else
       redirect_to new_password_path, alert: t(".user_not_found")
     end
@@ -21,7 +21,7 @@ class PasswordsController < ApplicationController
 
   def update
     if @user.update(params.permit(:password, :password_confirmation))
-      redirect_to new_session_path, notice: t(".password_has_been_reset")
+      redirect_to login_path, notice: t(".password_has_been_reset")
     else
       redirect_to edit_password_path(params[:token]), alert: t(".password_did_not_match")
     end

@@ -13,7 +13,7 @@ RSpec.describe "Users::Sessions", type: :system do
       fill_in "password", with: "password"
 
       expect do
-        click_button "Sign in"
+        click_button "ログインする"
 
         expect(page).to have_current_path dashboard_path
       end.to change(Session, :count).by(1)
@@ -26,7 +26,7 @@ RSpec.describe "Users::Sessions", type: :system do
         fill_in "email", with: "invalid@example.com"
         fill_in "password", with: "password"
 
-        click_button "Sign in"
+        click_button "ログインする"
 
         expect(page).to have_current_path login_path
       end

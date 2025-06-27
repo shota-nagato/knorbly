@@ -6,12 +6,29 @@ ja:
       user:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード（確認）
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  sessions:
+    logged_in: ログインしました
+    try_another_email_or_password: 別のメールアドレスかパスワードを試してください
+    new:
+      submit: ログインする
+      forgot_password: パスワードを忘れた場合
+  passwords:
+    sent_instructions: パスワードリセットのメールを送信しました
+    user_not_found: ユーザーが見つかりません
+    password_did_not_match: パスワードが一致しません
+    password_has_been_reset: パスワードがリセットされました
+    password_reset_link_is_invalid_or_has_expired: パスワードリセットリンクが無効か期限切れです
+    new:
+      submit: パスワードリセットのメールを送信する
+    edit:
+      submit: パスワードを変更する
   date:
     abbr_day_names:
       - 日

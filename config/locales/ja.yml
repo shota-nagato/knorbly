@@ -29,6 +29,11 @@ ja:
       submit: パスワードリセットのメールを送信する
     edit:
       submit: パスワードを変更する
+  passwords_mailer:
+    reset:
+      subject: パスワードリセット
+      body: 15分以内に以下のリンクからパスワードを変更してください
+      link: パスワードリセットページ
   date:
     abbr_day_names:
       - 日

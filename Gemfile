@@ -37,8 +37,9 @@ end
 
 group :development do
   gem "annotaterb"
-  gem "web-console"
+  gem "letter_opener_web"
   gem "hotwire-spark"
+  gem "web-console"
 end
 
 gem "dry-initializer"

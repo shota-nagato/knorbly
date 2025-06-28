@@ -16,6 +16,7 @@ ja:
   sessions:
     logged_in: ログインしました
     try_another_email_or_password: 別のメールアドレスかパスワードを試してください
+    logged_out: ログアウトしました
     new:
       submit: ログインする
       forgot_password: パスワードを忘れた場合

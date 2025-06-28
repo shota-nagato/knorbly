@@ -20,6 +20,10 @@ ja:
     new:
       submit: ログインする
       forgot_password: パスワードを忘れた場合
+  registrations:
+    signed_up: ユーザー登録しました
+    new:
+      submit: 登録する
   passwords:
     sent_instructions: パスワードリセットのメールを送信しました
     user_not_found: ユーザーが見つかりません
@@ -139,6 +143,7 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      not_saved: "%{count}件のエラーが発生したため、%{resource}を保存できませんでした"
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"

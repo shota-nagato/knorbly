@@ -1,12 +1,10 @@
-<div class="flex items-center justify-center h-screen">
-  <div class="w-full lg:max-w-md md:max-w-sm sm:max-w-xs px-4">
-    <%= form_with model: @user, url: registration_path, class: "space-y-4" do |form| %>
-      <%= render "shared/error_messages", resource: @user %>
+<%= component("layout/auth") do %>
+  <%= form_with model: @user, url: registration_path, class: "space-y-4" do |form| %>
+    <%= render "shared/error_messages", resource: @user %>
 
-      <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
-      <%= component(:input, form: form, label: User.human_attribute_name(:password), field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
-      <%= component(:input, form: form, label: User.human_attribute_name(:password_confirmation), field_type: :password_field, attribute_key: :password_confirmation, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
-      <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
-    <% end %>
-  </div>
-</div>
+    <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+    <%= component(:input, form: form, label: User.human_attribute_name(:password), field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
+    <%= component(:input, form: form, label: User.human_attribute_name(:password_confirmation), field_type: :password_field, attribute_key: :password_confirmation, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
+    <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
+  <% end %>
+<% end %>

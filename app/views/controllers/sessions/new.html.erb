@@ -1,12 +1,10 @@
-<div class="flex items-center justify-center h-screen">
-  <div class="w-full lg:max-w-md md:max-w-sm sm:max-w-xs px-4">
-    <%= form_with url: session_path, class: "space-y-4" do |form| %>
-      <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
-      <%= component(:input, form: form, label: User.human_attribute_name(:password), field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
-      <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
-    <% end %>
-    <div class="mt-2 text-center">
-      <%= component(:link_button, variant: :link, text: t(".forgot_password"), path: new_password_path) %>
-    </div>
+<%= component("layout/auth") do %>
+  <%= form_with url: session_path, class: "space-y-4" do |form| %>
+    <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+    <%= component(:input, form: form, label: User.human_attribute_name(:password), field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
+    <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
+  <% end %>
+  <div class="mt-2 flex justify-center">
+    <%= component(:link_button, variant: :link, text: t(".forgot_password"), path: new_password_path) %>
   </div>
-</div>
+<% end %>

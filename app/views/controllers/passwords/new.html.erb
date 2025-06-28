@@ -1,8 +1,6 @@
-<div class="flex items-center justify-center h-screen">
-  <div class="w-full lg:max-w-md md:max-w-sm sm:max-w-xs px-4">
-    <%= form_with url: passwords_path, class: "space-y-4" do |form| %>
-      <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
-      <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
-    <% end %>
-  </div>
-</div>
+<%= component("layout/auth") do %>
+  <%= form_with url: passwords_path, class: "space-y-4" do |form| %>
+    <%= component(:input, form: form, label: User.human_attribute_name(:email), field_type: :email_field, attribute_key: :email, placeholder: "user@example.com") %>
+    <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
+  <% end %>
+<% end %>

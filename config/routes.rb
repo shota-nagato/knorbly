@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resource :session
+  resource :registration
   resources :passwords, param: :token
 
   get "/login", to: "sessions#new"
+  get "/signup", to: "registrations#new"
 
   resources :component_styles, only: %i[ index ]
 

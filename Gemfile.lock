@@ -346,7 +346,7 @@ GEM
       websocket (~> 1.0)
     sin_lru_redux (2.5.2)
     smart_properties (1.17.0)
-    solid_cable (3.0.8)
+    solid_cable (3.0.11)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)

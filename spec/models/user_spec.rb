@@ -22,4 +22,12 @@ RSpec.describe User, type: :model do
       expect(subject).to be_valid
     end
   end
+
+  describe "default team" do
+    it "ユーザー作成後、デフォルトのチームが作成される" do
+      expect do
+        create(:user)
+      end.to change(Team, :count).by(1)
+    end
+  end
 end

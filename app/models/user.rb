@@ -21,18 +21,17 @@ class User < ApplicationRecord
   normalizes :email, with: ->(e) { e.strip.downcase }
 
   has_many :sessions, dependent: :destroy
+  has_many :team_users, dependent: :destroy
+  has_many :teams, through: :team_users
 
   after_create :create_default_team
 
   private
 
   def create_default_team
-    Team.create!(owner: self, name: default_team_name)
-
-    # TODO: team_users作成後以下に変更
-    # team = teams.new(owner: self, name: default_team_name)
-    # team.team_users.new(user: self)
-    # team.save!
+    team = teams.new(owner: self, name: default_team_name)
+    team.team_users.new(user: self)
+    team.save!
   end
 
   def default_team_name

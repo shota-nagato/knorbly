@@ -1,0 +1,13 @@
+<div class="flex items-center gap-2 p-2 rounded hover:bg-object-hover">
+  <div class="flex items-center justify-center shadow rounded-full bg-primary text-primary-foreground w-10 h-10">
+    U
+  </div>
+  <div class="flex flex-col">
+    <div class="body-sm">
+      ユーザー名
+    </div>
+    <div class="body-xs text-text-muted">
+      <%= helpers.current_user.email %>
+    </div>
+  </div>
+</div>

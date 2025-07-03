@@ -43,3 +43,4 @@ alwaysApply: true
 UI とスタイリング
 - Tailwind, Turbo, Stimulusを使って使いやすいUI/UXを実現する
 - ボタンなどのコンポーネントにできそうなスタイルはviews/componentsですでに定義されてないかを必ず確認し、定義されていれば使用、なければ必要に応じて作成すること
+- アイコンを追加するときはSVGファイルを作成してhelperから参照すること(app/helpers/icon_helper.rb)

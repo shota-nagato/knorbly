@@ -1,0 +1,12 @@
+<header class="sticky top-0 h-16 z-20 shadow-md bg-white flex justify-between md:justify-end items-center px-4">
+  <button
+    class="md:hidden p-2 hover:bg-background-muted rounded-md transition-colors"
+    data-controller="<%= controller_name %>"
+    data-action="<%= controller_name %>#openSidebar">
+    <%= helpers.icon("menu", css: "w-6 h-6 text-text-primary") %>
+  </button>
+
+  <button class="p-2 hover:bg-background-muted rounded-md transition-colors relative">
+    <%= helpers.icon("bell", css: "w-6 h-6 text-text-primary") %>
+  </button>
+</header>

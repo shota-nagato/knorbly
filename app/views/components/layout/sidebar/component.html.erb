@@ -1,0 +1,21 @@
+<div
+  id="sidebar-bg"
+  class="fixed inset-0 bg-black/70 z-30 hidden md:hidden"
+  data-controller="<%= controller_name %>"
+  data-action="click-><%= controller_name %>#closeSidebar">
+</div>
+<aside id="sidebar" class="absolute md:static z-40 h-screen bg-background shadow-[2px_0_8px_-2px_rgba(0,0,0,0.1)] transition-transform -translate-x-full md:translate-x-0">
+  <div class="h-16 px-4 flex items-center gap-3">
+    <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-sm flex-shrink-0">
+      T
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <%= component(:heading, size: :h3, text: "チーム名", class_name: "truncate") %>
+    </div>
+  </div>
+
+  <div class="p-4 min-w-64">
+    sidebar
+  </div>
+</aside>

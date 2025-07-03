@@ -6,6 +6,5 @@ export default class extends Controller {
     document.querySelector("#sidebar").classList.add("translate-x-0")
 
     document.querySelector("#sidebar-bg").classList.remove("hidden", "pointer-events-none")
-    // document.querySelector("#sidebar-bg").classList.add("opacity-100")
   }
 }

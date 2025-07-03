@@ -9,3 +9,9 @@ application.register("hello", HelloController)
 
 import Toast__ComponentController from "./../../views/components/toast/component_controller"
 application.register("toast--component", Toast__ComponentController)
+
+import Layout_Header_ComponentController from "./../../views/components/layout/header/component_controller"
+application.register("layout--header--component", Layout_Header_ComponentController)
+
+import Layout_Sidebar_ComponentController from "./../../views/components/layout/sidebar/component_controller"
+application.register("layout--sidebar--component", Layout_Sidebar_ComponentController)

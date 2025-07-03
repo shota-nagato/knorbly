@@ -5,7 +5,7 @@ class ViewComponentGenerator < Rails::Generators::NamedBase
   source_root File.expand_path("templates", __dir__)
 
   class_option :skip_test, type: :boolean, default: true
-  class_option :skip_system_test, type: :boolean, default: true
+  class_option :skip_system_test, type: :boolean, default: false
   class_option :skip_preview, type: :boolean, default: true
 
   argument :attributes, type: :array, default: [], banner: "attribute"
@@ -21,13 +21,13 @@ class ViewComponentGenerator < Rails::Generators::NamedBase
   def create_test_file
     return if options[:skip_test]
 
-    template "component_test.rb", File.join("test/views/components", class_path, "#{file_name}_test.rb")
+    template "component_spec.rb", File.join("spec/components", class_path, "#{file_name}_spec.rb")
   end
 
   def create_system_test_file
     return if options[:skip_system_test]
 
-    template "component_system_test.rb", File.join("test/system/views/components", class_path, "#{file_name}_test.rb")
+    template "component_system_spec.rb", File.join("spec/system/components", class_path, "#{file_name}_spec.rb")
   end
 
   def create_preview_file

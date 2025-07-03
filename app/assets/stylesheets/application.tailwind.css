@@ -52,4 +52,8 @@
   .body-sm {
     @apply text-xs font-semibold md:text-sm;
   }
+
+  .body-xs {
+    @apply text-[10px] font-normal md:text-xs;
+  }
 }

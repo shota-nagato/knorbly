@@ -1,0 +1,4 @@
+<%= link_to path, class: class_names("flex items-center gap-2 hover:bg-object-hover px-2 py-1 rounded", { "bg-object-active": request.path == path }) do %>
+  <%= helpers.icon(icon, css: "w-4 h-4 text-text-muted") %>
+  <div class="body-sm text-text-muted"><%= text %></div>
+<% end %>

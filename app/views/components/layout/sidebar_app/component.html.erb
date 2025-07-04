@@ -1,0 +1,15 @@
+<div class="flex items-center gap-3 hover:bg-object-hover p-2 rounded">
+  <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold text-sm flex-shrink-0">
+    T
+  </div>
+
+  <div class="flex-1">
+    <%= component(:heading, size: :h3, text: "チーム名", class_name: "truncate") %>
+  </div>
+</div>
+
+<div class="flex flex-col flex-1 justify-between">
+  <div></div>
+
+  <%= component(:profile) %>
+</div>

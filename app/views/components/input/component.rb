@@ -8,10 +8,11 @@ class Input::Component < ApplicationViewComponent
   option :placeholder, default: proc { "" }
   option :size, default: proc { :default }
   option :class_name, default: proc { "" }
+  option :data, default: proc { {} }
 
   style do
     base {
-      %w[flex w-full rounded border border-border shadow-sm focus:border-border-focus focus-visible:outline-none]
+      %w[flex w-full rounded bg-white border border-border shadow-sm focus:border-border-focus focus-visible:outline-none]
     }
     variants {
       size {

@@ -15,3 +15,9 @@ application.register("layout--header--component", Layout_Header_ComponentControl
 
 import Layout_Sidebar_ComponentController from "./../../views/components/layout/sidebar/component_controller"
 application.register("layout--sidebar--component", Layout_Sidebar_ComponentController)
+
+import Input_ComponentController from "./../../views/components/input/component_controller"
+application.register("input--component", Input_ComponentController)
+
+import AutoSaveSuccess_ComponentController from "../../views/components/auto_save_success/component_controller"
+application.register("auto-save-success--component", AutoSaveSuccess_ComponentController)

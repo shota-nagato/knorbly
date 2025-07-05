@@ -1,3 +1,18 @@
 <%= component("container/settings") do %>
   <%= component(:heading, size: :h2, text: "プロフィール") %>
+
+  <%= form_with(
+    model: @user,
+    url: settings_profile_path,
+    class: "mt-8 bg-background border-border rounded p-4 space-y-4",
+    data: {
+      controller: "input--component",
+      input__component_target: "form"
+    }
+  ) do |form| %>
+    <div class="space-y-1">
+      <%= component(:input, form: form, label: User.human_attribute_name(:name), field_type: :text_field, attribute_key: :name, data: { action: "blur->input--component#submit" }) %>
+      <div id="name-status"></div>
+    </div>
+  <% end %>
 <% end %>

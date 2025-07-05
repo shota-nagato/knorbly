@@ -33,8 +33,10 @@
       </div>
     </div>
 
-    <% flash.each do |key, message| %>
-      <%= component(:toast, type: key, message: message) %>
+    <%= turbo_frame_tag :flash do %>
+      <% flash.each do |key, message| %>
+        <%= component(:toast, type: key, message: message) %>
+      <% end %>
     <% end %>
   </body>
 </html>

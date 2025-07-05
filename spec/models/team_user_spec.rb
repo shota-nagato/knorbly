@@ -3,7 +3,7 @@
 # Table name: team_users
 #
 #  id         :bigint           not null, primary key
-#  role       :integer          default(0), not null
+#  role       :integer          default("member"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  team_id    :bigint           not null

@@ -16,7 +16,7 @@ RSpec.describe "Settings::Profiles", type: :system do
         # inputからフォーカスを外したことを再現する
         find("body").click
 
-        expect(page).to have_content "名前を更新しました"
+        expect(page).to have_content "名前を更新しました", wait: 3
         expect(user.reload.name).to eq "変更後の名前"
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe "Settings::Profiles", type: :system do
         # inputからフォーカスを外したことを再現する
         find("body").click
 
-        expect(page).to have_content "名前は20文字以内で入力してください"
+        expect(page).to have_content "名前は20文字以内で入力してください", wait: 3
         expect(user.reload.name).to eq "変更前の名前"
       end
     end

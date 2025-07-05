@@ -13,6 +13,7 @@ RSpec.describe "Settings::Profiles", type: :system do
         visit settings_profile_path
 
         fill_in "user_name", with: "変更後の名前"
+        # inputからフォーカスを外したことを再現する
         find("body").click
 
         expect(page).to have_content "名前を更新しました"
@@ -25,6 +26,7 @@ RSpec.describe "Settings::Profiles", type: :system do
         visit settings_profile_path
 
         fill_in "user_name", with: "a" * 21
+        # inputからフォーカスを外したことを再現する
         find("body").click
 
         expect(page).to have_content "名前は20文字以内で入力してください"

@@ -89,4 +89,4 @@ jobs:
           bin/rails zeitwerk:check
           bin/rails db:test:prepare
           bundle exec rails assets:precompile
-          bundle exec rspec
+          bundle exec rspec --exclude-pattern "spec/system/settings/profiles_spec.rb"

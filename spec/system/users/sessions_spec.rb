@@ -5,7 +5,7 @@ RSpec.describe "Users::Sessions", type: :system do
 
   describe "ログイン" do
     context "正しいメールアドレス、パスワードを入力した場合" do
-      it "ログインできる" do
+      it "ログインできる", js: true do
         visit login_path
 
         fill_in "email", with: user.email

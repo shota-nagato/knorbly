@@ -9,9 +9,11 @@ module Auth
         visit login_path
 
         fill_in "email", with: user.email
-        fill_in "password", with: "password"
+        fill_in "password", with: user.password
 
         click_button "ログインする"
+
+        expect(page).to have_content "ログインしました"
       end
     end
   end

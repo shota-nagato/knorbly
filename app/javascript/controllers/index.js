@@ -21,3 +21,6 @@ application.register("input--component", Input_ComponentController)
 
 import AutoSaveSuccess_ComponentController from "../../views/components/auto_save_success/component_controller"
 application.register("auto-save-success--component", AutoSaveSuccess_ComponentController)
+
+import Loading_ComponentController from "../../views/components/loading/component_controller"
+application.register("loading--component", Loading_ComponentController)

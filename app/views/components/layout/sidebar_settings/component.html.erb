@@ -1,10 +1,10 @@
 <div class="flex flex-col gap-4">
   <%= link_to root_path, class: "flex items-center gap-1 hover:bg-object-hover px-2 py-1 rounded" do %>
     <%= helpers.icon("chevron-left", css: "w-4 h-4 text-text-inactive") %>
-    <div class="body-sm text-text-inactive">アプリに戻る</div>
+    <div class="body-sm text-text-inactive"><%= t(".back_to_app") %></div>
   <% end %>
 
   <div class="flex flex-col">
-    <%= component(:navigation_item, icon: "user", text: "プロフィール", path: settings_profile_path) %>
+    <%= component(:navigation_item, icon: "user", text: t(".profile"), path: settings_profile_path) %>
   </div>
 </div>

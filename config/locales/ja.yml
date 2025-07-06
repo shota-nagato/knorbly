@@ -48,6 +48,10 @@ ja:
       subject: パスワードリセット
       body: 15分以内に以下のリンクからパスワードを変更してください
       link: パスワードリセットページ
+  settings:
+    profiles:
+      updated: プロフィールを更新しました
+      attribute_updated: "%{attribute}を更新しました"
   date:
     abbr_day_names:
       - 日

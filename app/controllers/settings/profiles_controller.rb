@@ -14,9 +14,9 @@ class Settings::ProfilesController < ApplicationController
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
             "#{updated_attribute}-status",
-            AutoSaveSuccess::Component.new(text: "#{User.human_attribute_name(updated_attribute)}を更新しました").render_in(view_context))
+            AutoSaveSuccess::Component.new(text: t(".attribute_updated", attribute: User.human_attribute_name(updated_attribute))).render_in(view_context))
         }
-        format.html { redirect_to settings_profile_path, notice: "プロフィールを更新しました" }
+        format.html { redirect_to settings_profile_path, notice: t(".updated") }
       else
         error_attribute =  @user.errors.messages.keys.last
 

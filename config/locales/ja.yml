@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       team: チーム
       team_user: チームユーザー
+      folder: フォルダ
     attributes:
       user:
         email: メールアドレス
@@ -16,6 +17,10 @@ ja:
         role: ロール
         user_id: ユーザーID
         team_id: チームID
+      folder:
+        name: フォルダ名
+        slug: フォルダID
+        team: チーム
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

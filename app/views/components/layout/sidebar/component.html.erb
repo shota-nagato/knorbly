@@ -1,9 +1,11 @@
-<div
-  id="sidebar-bg"
-  class="fixed inset-0 bg-black/70 z-30 hidden md:hidden"
-  data-controller="<%= controller_name %>"
-  data-action="click-><%= controller_name %>#closeSidebar">
-</div>
-<aside id="sidebar" class="flex flex-col absolute md:static z-40 h-screen p-4 min-w-64 bg-background shadow-[2px_0_8px_-2px_rgba(0,0,0,0.1)] transition-transform -translate-x-full md:translate-x-0">
-  <%= component(component_name) %>
+<aside class="sticky h-screen top-0 z-40">
+  <div
+    id="sidebar-bg"
+    class="fixed inset-0 bg-black/70 z-10 hidden md:hidden"
+    data-controller="<%= controller_name %>"
+    data-action="click-><%= controller_name %>#closeSidebar">
+  </div>
+  <div id="sidebar" class="flex flex-col absolute md:static z-20 h-screen p-4 min-w-64 bg-background shadow-[2px_0_8px_-2px_rgba(0,0,0,0.1)] transition-transform -translate-x-full md:translate-x-0">
+    <%= component(component_name) %>
+  </div>
 </aside>

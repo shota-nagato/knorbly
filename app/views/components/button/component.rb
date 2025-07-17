@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
-class BaseButtonComponent < ApplicationViewComponent
+class Button::Component < ApplicationViewComponent
   option :variant, default: proc { :default }
   option :size, default: proc { :default }
   option :disabled, default: proc { false }
   option :class_name, default: proc { "" }
+  option :href, default: proc { nil }
+  option :type, default: proc { "" }
 
   style do
+    base {
+      %w[relative inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus-ring disabled:pointer-events-none disabled:opacity-50]
+    }
     variants {
       variant {
         default {
@@ -48,11 +53,14 @@ class BaseButtonComponent < ApplicationViewComponent
     }
   end
 
-  def button_base_class
-    "inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-focus-ring disabled:pointer-events-none disabled:opacity-50"
+  def tag
+    @href ? :a : :button
   end
 
-  def merged_class
-    tw_merge(button_base_class, style(variant:, size:, disabled:), class_name)
+  def html_options
+    options = { class: tw_merge(style(variant:, size:, disabled:), class_name) }
+    options[:type] = @type unless @href
+    options[:href] = @href if @href
+    options
   end
 end

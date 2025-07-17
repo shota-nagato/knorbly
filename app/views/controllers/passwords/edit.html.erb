@@ -2,6 +2,6 @@
   <%= form_with url: password_path(params[:token]), method: :put, class: "space-y-4" do |form| %>
     <%= component(:input, form: form, label: User.human_attribute_name(:password), field_type: :password_field, attribute_key: :password, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
     <%= component(:input, form: form, label: User.human_attribute_name(:password_confirmation), field_type: :password_field, attribute_key: :password_confirmation, placeholder: "⚫⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎") %>
-    <%= component(:submit_button, form: form, text: t(".submit"), class_name: "w-full mt-2") %>
+    <%= component(:button, type: "submit", class_name: "w-full mt-2") { t(".submit") } %>
   <% end %>
 <% end %>

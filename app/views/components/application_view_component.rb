@@ -4,6 +4,7 @@ class ApplicationViewComponent < ViewComponentContrib::Base
   # https://github.com/palkan/view_component-contrib?tab=readme-ov-file#style-variants
   include ViewComponentContrib::StyleVariants
   include ApplicationHelper
+  include Turbo::FramesHelper
 
   private
 

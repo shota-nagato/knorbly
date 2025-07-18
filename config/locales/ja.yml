@@ -57,6 +57,13 @@ ja:
     profiles:
       updated: プロフィールを更新しました
       attribute_updated: "%{attribute}を更新しました"
+  folders:
+    new:
+      title: フォルダを作成
+      submit: 作成する
+    edit:
+      title: フォルダを編集
+      submit: 更新する
   date:
     abbr_day_names:
       - 日

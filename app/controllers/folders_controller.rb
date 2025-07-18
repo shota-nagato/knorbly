@@ -13,7 +13,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       if @folder.save
         format.turbo_stream {
-          flash[:notice] = "フォルダを作成しました"
+          flash[:notice] = t(".created")
           render turbo_stream: turbo_stream.action(:redirect, folder_path(@folder))
         }
       else

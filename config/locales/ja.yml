@@ -58,6 +58,7 @@ ja:
       updated: プロフィールを更新しました
       attribute_updated: "%{attribute}を更新しました"
   folders:
+    created: フォルダを作成しました
     new:
       title: フォルダを作成
       submit: 作成する

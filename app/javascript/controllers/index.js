@@ -24,3 +24,6 @@ application.register("auto-save-success--component", AutoSaveSuccess_ComponentCo
 
 import Loading_ComponentController from "../../views/components/loading/component_controller"
 application.register("loading--component", Loading_ComponentController)
+
+import SlideOver_ComponentController from "../../views/components/slide_over/component_controller"
+application.register("slide-over--component", SlideOver_ComponentController)

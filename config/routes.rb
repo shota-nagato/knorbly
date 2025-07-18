@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "dashboard#index", as: :dashboard
 
-  resources :folders
+  resources :folders, param: :slug
 
   namespace :settings do
     resource :profile, only: %i[ edit update ]

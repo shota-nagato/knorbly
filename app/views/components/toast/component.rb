@@ -5,7 +5,7 @@ class Toast::Component < ApplicationViewComponent
   option :type, default: proc { :notice }
 
   def base_style
-    "flex items-center gap-2 fixed top-4 right-4 py-2 px-4 shadow-sm border border-border transition-opacity duration-300 transform rounded-md"
+    "flex items-center gap-2 fixed top-4 right-4 z-50 py-2 px-4 shadow-sm border border-border transition-opacity duration-300 transform rounded-md"
   end
 
   def text_color

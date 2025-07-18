@@ -1,0 +1,17 @@
+<%= form_with(model: folder, id: "folder-form") do |form| %>
+  <% if folder.errors.any? %>
+    <ul>
+      <% folder.errors.each do |error| %>
+        <li class="text-alert body-xs"><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="mt-4">
+    <%= component(:input, form: form, label: :name, attribute_key: :name) %>
+  </div>
+
+  <div class="mt-8">
+    <%= component(:button, type: "submit", class_name: "w-full") { t("folders.#{folder.new_record? ? "new" : "edit"}.submit") } %>
+  </div>
+<% end %>

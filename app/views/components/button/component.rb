@@ -7,6 +7,7 @@ class Button::Component < ApplicationViewComponent
   option :class_name, default: proc { "" }
   option :href, default: proc { nil }
   option :type, default: proc { "" }
+  option :data, default: proc { {} }
 
   style do
     base {
@@ -61,6 +62,7 @@ class Button::Component < ApplicationViewComponent
     options = { class: tw_merge(style(variant:, size:, disabled:), class_name) }
     options[:type] = @type unless @href
     options[:href] = @href if @href
+    options[:data] = @data if @data.present?
     options
   end
 end

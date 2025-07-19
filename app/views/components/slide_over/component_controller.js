@@ -6,7 +6,6 @@ export default class extends Controller {
   static values = { add: String, remove: String, animate: Boolean }
 
   connect() {
-    console.log("connect")
     this.slideOverTarget.classList.add("translate-x-full")
     setTimeout(() => {
       this.slideOverTarget.classList.remove("translate-x-full");

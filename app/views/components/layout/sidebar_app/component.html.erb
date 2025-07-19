@@ -8,9 +8,9 @@
   </div>
 </div>
 
-<div class="flex flex-col flex-1 justify-between">
+<div class="flex flex-col flex-1 justify-between" data-controller="layout--sidebar--component">
   <div>
-    <%= component(:button, variant: :link, href: new_folder_path, data: { turbo_frame: "slide-over", action: "click->layouts--sidebar--component#closeSidebar" }) do %>
+    <%= component(:button, variant: :link, href: new_folder_path, data: { turbo_frame: "slide-over", action: "click->layout--sidebar--component#closeSidebar" }) do %>
       <div class="flex items-center gap-2">
         <%= helpers.icon("folder-plus", css: "w-4 h-4") %>
         <span class="body-xs">フォルダ作成</span>

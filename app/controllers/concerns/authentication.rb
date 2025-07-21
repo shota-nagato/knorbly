@@ -23,6 +23,7 @@ module Authentication
 
     def resume_session
       Current.session ||= find_session_by_cookie
+      set_current_team if Current.session
     end
 
     def find_session_by_cookie
@@ -42,11 +43,16 @@ module Authentication
       user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |session|
         Current.session = session
         cookies.signed.permanent[:session_id] = { value: session.id, httponly: true, same_site: :lax }
+        set_current_team
       end
     end
 
     def terminate_session
       Current.session.destroy
       cookies.delete(:session_id)
+    end
+
+    def set_current_team
+      Current.team = Current.user&.teams&.last
     end
 end

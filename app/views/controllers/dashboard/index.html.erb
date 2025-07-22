@@ -1,2 +1,4 @@
-<%= Current.user.email %>
-<%= button_to "Sign out", session_path, method: :delete %>
+<%= component("container/app") do %>
+  <%= Current.user.email %>
+  <%= button_to "Sign out", session_path, method: :delete %>
+<% end %>

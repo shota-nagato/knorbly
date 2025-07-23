@@ -27,3 +27,6 @@ application.register("loading--component", Loading_ComponentController)
 
 import SlideOver_ComponentController from "../../views/components/slide_over/component_controller"
 application.register("slide-over--component", SlideOver_ComponentController)
+
+import Dropdown_ComponentController from "../../views/components/dropdown/component_controller"
+application.register("dropdown--component", Dropdown_ComponentController)

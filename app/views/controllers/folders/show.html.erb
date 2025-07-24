@@ -28,13 +28,13 @@
         <%= icon("rss", css: "w-6 h-6") %>
       </div>
       <div class="mt-4">
-        <%= component(:heading, size: :h3, text: "フィードがフォローされていません") %>
+        <%= component(:heading, size: :h3, text: t(".no_feeds")) %>
       </div>
       <div class="mt-2">
-        <p class="body-sm text-text-muted">フォルダにフィードを追加すると、フィードの内容を確認できるようになります。</p>
+        <p class="body-sm text-text-muted">このフォルダにフィードをフォローして、情報を集めましょう</p>
       </div>
       <div class="mt-4">
-        <%= component(:button, href: search_feeds_path) { "フィードを検索" } %>
+        <%= component(:button, href: search_feeds_path) { t(".search_feeds") } %>
       </div>
     </div>
   </div>

@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   resources :folders, param: :slug
 
+  namespace :search do
+    resources :feeds, only: %i[ index show ]
+  end
+
   namespace :settings do
     resource :profile, only: %i[ edit update ]
   end

@@ -74,6 +74,10 @@ ja:
       no_feeds: フィードがフォローされていません
       no_feeds_description: このフォルダでフィードをフォローして、情報を集めましょう
       search_feeds: フィードを検索
+  search:
+    feeds:
+      index:
+        title: フィードを検索
   date:
     abbr_day_names:
       - 日

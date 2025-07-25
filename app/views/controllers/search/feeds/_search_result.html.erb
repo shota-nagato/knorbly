@@ -1,0 +1,21 @@
+<% if feeds.count.zero? %>
+  <div class="body-sm text-text-secondary"><%= t("search.feeds.index.not_found") %></div>
+<% else %>
+  <div class="body-sm text-text-secondary">
+    <%= t("search.feeds.index.found", count: feeds.size) %>
+  </div>
+  <div class="mt-2 flex flex-col gap-2">
+    <% feeds.each do |feed| %>
+      <%= link_to "#", class: "p-2 rounded hover:bg-background" do %>
+        <div class="flex flex-col gap-1">
+          <div class="body">
+            <%= feed.name %>
+          </div>
+          <div class="body-sm text-text-secondary">
+            <%= feed.description %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

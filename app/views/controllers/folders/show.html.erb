@@ -21,4 +21,21 @@
       <% end %>
     </div>
   </div>
+
+  <div class="mt-32">
+    <div class="flex flex-col items-center justify-center">
+      <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
+        <%= icon("rss", css: "w-6 h-6") %>
+      </div>
+      <div class="mt-4">
+        <%= component(:heading, size: :h3, text: t(".no_feeds")) %>
+      </div>
+      <div class="mt-2">
+        <p class="body-sm text-text-muted">このフォルダにフィードをフォローして、情報を集めましょう</p>
+      </div>
+      <div class="mt-4">
+        <%= component(:button, href: search_feeds_path) { t(".search_feeds") } %>
+      </div>
+    </div>
+  </div>
 <% end %>

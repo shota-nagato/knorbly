@@ -7,4 +7,11 @@ export default class extends Controller {
     event.preventDefault();
     this.formTarget.requestSubmit();
   }
+
+  search(event) {
+    clearTimeout(this.timeout)
+    this.timeout = setTimeout(() => {
+      this.submit(event)
+    }, 500)
+  }
 }

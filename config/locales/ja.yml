@@ -71,6 +71,16 @@ ja:
       edit: 編集
       delete: 削除
       confirm: 本当に削除しますか？
+      no_feeds: フィードがフォローされていません
+      no_feeds_description: このフォルダでフィードをフォローして、情報を集めましょう
+      search_feeds: フィードを検索
+  search:
+    feeds:
+      index:
+        title: フィードを検索
+        placeholder: RSSのURLもしくはWebサイト名
+        not_found: 見つかりませんでした
+        found: "%{count}件見つかりました"
   date:
     abbr_day_names:
       - 日

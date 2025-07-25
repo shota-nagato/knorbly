@@ -25,5 +25,5 @@ class Folder < ApplicationRecord
   belongs_to :team
 
   validates :name, presence: true
-  validates :slug, uniqueness: { scope: :team_id }
+  validates :slug, presence: true, uniqueness: { scope: :team_id }
 end

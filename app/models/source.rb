@@ -23,6 +23,12 @@ class Source < ApplicationRecord
 
   enum :source_type, [ :rss ]
 
+  def self.search(query)
+    return [] if query.blank?
+
+    where(arel_table[:name].matches("%#{sanitize_sql_like(query)}%"))
+  end
+
   def rss_url_required?
     rss?
   end

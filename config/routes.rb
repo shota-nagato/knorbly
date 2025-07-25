@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :folders, param: :slug
 
   namespace :search do
-    resources :feeds, only: %i[ index show ]
+    resources :feeds, only: %i[ index show ] do
+      collection do
+        post :search
+      end
+    end
   end
 
   namespace :settings do

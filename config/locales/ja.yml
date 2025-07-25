@@ -78,6 +78,9 @@ ja:
     feeds:
       index:
         title: フィードを検索
+        placeholder: RSSのURLもしくはWebサイト名
+        not_found: 見つかりませんでした
+        found: "%{count}件見つかりました"
   date:
     abbr_day_names:
       - 日

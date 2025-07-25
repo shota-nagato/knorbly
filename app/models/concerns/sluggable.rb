@@ -3,7 +3,7 @@ module Sluggable
 
   included do
     class_attribute :slug_column, :slug_scope
-    before_save :generate_slug
+    before_validation :generate_slug
   end
 
   class_methods do

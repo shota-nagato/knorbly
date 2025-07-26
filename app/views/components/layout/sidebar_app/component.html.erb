@@ -10,20 +10,26 @@
 
 <div class="flex flex-col flex-1 justify-between" data-controller="layout--sidebar--component">
   <div class="mt-8">
-    <div class="body-xs text-text-inactive px-2">Feeds</div>
-    <div class="mt-1">
-      <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: "#") %>
+    <div>
+      <%= component(:navigation_item, icon: "home", text: t(".dashboard"), path: dashboard_path) %>
+      <%= component(:navigation_item, icon: "glass", text: t(".search"), path: search_feeds_path) %>
+    </div>
+    <div class="mt-4">
+      <div class="body-xs text-text-inactive px-2">Feeds</div>
+      <div class="mt-1">
+        <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: "#") %>
 
-      <% helpers.current_team.folders.each do |folder| %>
-        <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
+        <% helpers.current_team.folders.each do |folder| %>
+          <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
+        <% end %>
+      </div>
+      <%= component(:button, variant: :link, href: new_folder_path, size: :sm, class_name: "px-2", data: { turbo_frame: "slide-over", action: "click->layout--sidebar--component#closeSidebar" }) do %>
+        <div class="flex items-center gap-1">
+          <%= helpers.icon("folder-plus", css: "w-4 h-4") %>
+          <span class="body-xs"><%= t(".create_folder") %></span>
+        </div>
       <% end %>
     </div>
-    <%= component(:button, variant: :link, href: new_folder_path, size: :sm, class_name: "px-2", data: { turbo_frame: "slide-over", action: "click->layout--sidebar--component#closeSidebar" }) do %>
-      <div class="flex items-center gap-1">
-        <%= helpers.icon("folder-plus", css: "w-4 h-4") %>
-        <span class="body-xs"><%= t(".create_folder") %></span>
-      </div>
-    <% end %>
   </div>
   <%= component(:profile) %>
 </div>

@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :team_users, dependent: :destroy
   has_many :teams, through: :team_users
+  has_many :owned_teams, class_name: "Team", foreign_key: :owner_id, inverse_of: :owner, dependent: :destroy
 
   after_create :create_default_team
 

@@ -26,4 +26,13 @@ RSpec.describe Team, type: :model do
       expect(subject).to be_valid
     end
   end
+
+  describe "associations" do
+    let(:team) { create(:team) }
+
+    it "オーナーが削除されるとチームも削除される" do
+      team.owner.destroy
+      expect(Team.exists?(team.id)).to be_falsey
+    end
+  end
 end

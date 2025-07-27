@@ -1,0 +1,4 @@
+<%= component("container/app") do %>
+  <%= component(:heading, size: :h1, text: @feed.name) %>
+  <div class="body text-text-secondary"><%= @feed.description %></div>
+<% end %>

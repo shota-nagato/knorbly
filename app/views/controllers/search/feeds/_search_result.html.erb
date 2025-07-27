@@ -4,10 +4,13 @@
   <div class="body-sm text-text-secondary">
     <%= t("search.feeds.index.found", count: feeds.size) %>
   </div>
-  <div class="mt-2 flex flex-col gap-2">
+  <div class="mt-2 flex flex-col">
     <% feeds.each do |feed| %>
-      <%= link_to "#", class: "p-2 rounded hover:bg-background" do %>
-        <div class="flex flex-col gap-1">
+      <%= link_to search_feed_path(feed.slug), class: "flex gap-2 items-center p-2 hover:bg-background", data: { turbo: false } do %>
+        <div class="flex items-center justify-center border border-border rounded">
+          <%= icon("rss") %>
+        </div>
+        <div class="flex items-center gap-1">
           <div class="body">
             <%= feed.name %>
           </div>

@@ -2,6 +2,10 @@ class Search::FeedsController < ApplicationController
   def index
   end
 
+  def show
+    @feed = Source.rss.find_by(slug: params[:slug])
+  end
+
   def search
     feeds = Source.rss.search(params[:query])
 

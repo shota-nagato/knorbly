@@ -81,6 +81,7 @@ ja:
         placeholder: RSSのURLもしくはWebサイト名
         not_found: 見つかりませんでした
         found: "%{count}件見つかりました"
+        by_category: カテゴリから探す
   date:
     abbr_day_names:
       - 日

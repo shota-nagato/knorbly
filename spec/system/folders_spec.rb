@@ -51,7 +51,7 @@ RSpec.describe "Folders", type: :system do
 
       expect(page).to have_content "編集前のフォルダ"
 
-      find("#dropdown-button").click
+      find("#folder-dropdown-button").click
 
       expect(page).to have_content "編集"
 
@@ -75,7 +75,7 @@ RSpec.describe "Folders", type: :system do
     it "フォルダを削除できる" do
       visit folder_path(folder)
 
-      find("#dropdown-button").click
+      find("#folder-dropdown-button").click
 
       expect(page).to have_content "削除"
 

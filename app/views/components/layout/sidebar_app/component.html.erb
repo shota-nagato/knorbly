@@ -31,5 +31,21 @@
       <% end %>
     </div>
   </div>
-  <%= component(:profile) %>
+  <%= component(:dropdown, direction: :right) do |dropdown| %>
+    <% dropdown.with_button do %>
+      <%= component(:profile) %>
+    <% end %>
+
+    <% dropdown.with_menu do %>
+      <%= link_to settings_profile_path, class: "flex items-center gap-2 text-text-muted whitespace-nowrap px-2 py-1 hover:bg-background-muted rounded" do %>
+        <%= helpers.icon("cog-6-tooth", css: "w-5 h-5") %>
+        <span class="body-sm"><%= t(".settings") %></span>
+      <% end %>
+      <hr class="my-1 border-border">
+      <%= link_to session_path, data: { turbo_method: :delete }, class: "flex items-center gap-2 text-text-muted whitespace-nowrap px-2 py-1 hover:bg-background-muted rounded" do %>
+        <%= helpers.icon("arrow-right-start", css: "w-5 h-5") %>
+        <span class="body-sm"><%= t(".sign_out") %></span>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

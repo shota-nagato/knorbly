@@ -4,7 +4,9 @@
     <div>
       <%= component(:dropdown) do |dropdown| %>
         <% dropdown.with_button do %>
-          <%= icon("elipsis-horizontal", css: "text-text-muted w-8 h-8") %>
+          <div id="folder-dropdown-button">
+            <%= icon("elipsis-horizontal", css: "text-text-muted w-8 h-8") %>
+          </div>
         <% end %>
 
         <% dropdown.with_menu do %>

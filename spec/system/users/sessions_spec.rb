@@ -55,7 +55,8 @@ RSpec.describe "Users::Sessions", type: :system do
 
       visit dashboard_path
 
-      click_button "Sign out"
+      find("#dropdown-button").click
+      click_link "ログアウト"
 
       expect(page).to have_content "ログアウトしました"
       expect(page).to have_current_path login_path

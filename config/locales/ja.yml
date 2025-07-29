@@ -57,6 +57,13 @@ ja:
     profiles:
       updated: プロフィールを更新しました
       attribute_updated: "%{attribute}を更新しました"
+      edit:
+        title: プロフィール
+    teams:
+      updated: チームを更新しました
+      attribute_updated: "%{attribute}を更新しました"
+      edit:
+        title: チーム
   folders:
     created: フォルダを作成しました
     updated: フォルダを更新しました

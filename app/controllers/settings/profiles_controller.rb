@@ -1,4 +1,6 @@
 class Settings::ProfilesController < ApplicationController
+  include AutoSaveable
+
   before_action :set_user
 
   def edit
@@ -6,28 +8,7 @@ class Settings::ProfilesController < ApplicationController
 
   # autosaveアクションに移行するかも
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        updated_attribute = @user.previous_changes.keys.last
-        return unless updated_attribute
-
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.update(
-            "#{updated_attribute}-status",
-            AutoSaveSuccess::Component.new(text: t(".attribute_updated", attribute: User.human_attribute_name(updated_attribute))).render_in(view_context))
-        }
-        format.html { redirect_to settings_profile_path, notice: t(".updated") }
-      else
-        error_attribute =  @user.errors.messages.keys.last
-
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.update(
-            "#{error_attribute}-status",
-            AutoSaveError::Component.new(text: @user.errors.full_messages.last).render_in(view_context))
-        }
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+    handle_auto_save_update(@user, settings_profile_path)
   end
 
   private

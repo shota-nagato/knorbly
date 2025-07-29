@@ -26,9 +26,11 @@ Rails.application.routes.draw do
 
   namespace :settings do
     resource :profile, only: %i[ edit update ]
+    resource :team, only: %i[ edit update ]
   end
 
   get "/settings/profile", to: "settings/profiles#edit"
+  get "/settings/team", to: "settings/teams#edit"
 
   root "static#index"
 end

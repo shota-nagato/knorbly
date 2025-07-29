@@ -9,7 +9,7 @@ class AutoSaveUpdateUsecase
   end
 
   def call
-    @controller.respond_to do |format|
+    controller.respond_to do |format|
       if update_resource
         handle_success(format)
       else
@@ -31,7 +31,7 @@ class AutoSaveUpdateUsecase
     return unless updated_attribute
 
     format.turbo_stream do
-      controller.render turbo_stream: controller.turbo_stream.update(
+      controller.render turbo_stream: controller.helpers.turbo_stream.update(
         "#{updated_attribute}-status",
         AutoSaveSuccess::Component.new(
           text: controller.t(".attribute_updated", attribute: resource.class.human_attribute_name(updated_attribute))
@@ -45,7 +45,7 @@ class AutoSaveUpdateUsecase
     error_attribute = resource.errors.messages.keys.last
 
     format.turbo_stream do
-      controller.render turbo_stream: controller.turbo_stream.update(
+      controller.render turbo_stream: controller.helpers.turbo_stream.update(
         "#{error_attribute}-status",
         AutoSaveError::Component.new(text: resource.errors.full_messages.last).render_in(controller.view_context)
       )

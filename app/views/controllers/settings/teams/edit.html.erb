@@ -2,8 +2,8 @@
   <%= component(:heading, size: :h2, text: t(".title")) %>
 
   <%= form_with(
-    model: @user,
-    url: settings_profile_path,
+    model: @team,
+    url: settings_team_path,
     class: "mt-8 bg-background border-border rounded p-4 space-y-4",
     data: {
       controller: "input--component loading--component",
@@ -12,7 +12,7 @@
     }
   ) do |form| %>
     <div class="space-y-1">
-      <%= component(:input, form: form, label: User.human_attribute_name(:name), field_type: :text_field, attribute_key: :name, data: { action: "blur->input--component#submit" }) %>
+      <%= component(:input, form: form, label: Team.human_attribute_name(:name), field_type: :text_field, attribute_key: :name, data: { action: "blur->input--component#submit" }) %>
       <div id="name-status"></div>
       <div data-loading--component-target="loading" class="hidden">
         <%= component(:loading) %>

@@ -23,5 +23,5 @@ class Team < ApplicationRecord
   has_many :users, through: :team_users
   has_many :folders, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 20 }
 end

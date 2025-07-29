@@ -8,7 +8,7 @@ class Settings::ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        updated_attribute = @user.previous_changes.keys.last
+        updated_attribute = @user.previous_changes.except(:updated_at).keys.last
         return unless updated_attribute
 
         format.turbo_stream {

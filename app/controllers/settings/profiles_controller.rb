@@ -1,4 +1,6 @@
 class Settings::ProfilesController < ApplicationController
+  include AutoSaveable
+
   before_action :set_user
 
   def edit
@@ -6,11 +8,7 @@ class Settings::ProfilesController < ApplicationController
 
   # autosaveアクションに移行するかも
   def update
-    AutoSaveUpdateUsecase.new(
-      controller: self,
-      resource: @user,
-      redirect_path: settings_profile_path
-    ).call
+    handle_auto_save_update(@user, settings_profile_path)
   end
 
   private

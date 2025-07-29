@@ -1,15 +1,13 @@
 class Settings::TeamsController < ApplicationController
+  include AutoSaveable
+
   before_action :set_team
 
   def edit
   end
 
   def update
-    AutoSaveUpdateUsecase.new(
-      controller: self,
-      resource: @team,
-      redirect_path: settings_team_path
-    ).call
+    handle_auto_save_update(@team, settings_team_path)
   end
 
   private

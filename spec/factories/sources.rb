@@ -16,6 +16,6 @@ FactoryBot.define do
   factory :source do
     name { "Source" }
     description { "Source description" }
-    rss_url { "https://example.com/rss" }
+    sequence(:rss_url) { |n| "https://example#{n}.com/rss" }
   end
 end

@@ -19,7 +19,7 @@ class Source < ApplicationRecord
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
-  validates :rss_url, presence: true, if: :rss_url_required?
+  validates :rss_url, presence: true, uniqueness: true, if: :rss_url_required?
 
   enum :source_type, [ :rss ]
 

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :feeds, only: %i[ index show ], param: :slug do
       collection do
         post :search
+        get :list
       end
     end
   end

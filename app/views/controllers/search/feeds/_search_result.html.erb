@@ -2,10 +2,10 @@
   <div class="body-sm text-text-secondary"><%= t("search.feeds.index.not_found") %></div>
 <% else %>
   <div class="body-sm text-text-secondary">
-    <%= t("search.feeds.index.found", count: feeds.size) %>
+    <%= t("search.feeds.index.found", query: params[:query]) %>
   </div>
   <div class="mt-2 flex flex-col">
-    <% feeds.each do |feed| %>
+    <% feeds.limit(5).each do |feed| %>
       <%= link_to search_feed_path(feed.slug), class: "flex gap-2 items-center p-2 hover:bg-background", data: { turbo: false } do %>
         <div class="flex items-center justify-center border border-border rounded">
           <%= icon("rss") %>
@@ -21,4 +21,17 @@
       <% end %>
     <% end %>
   </div>
+
+  <% if feeds.size > 5 %>
+    <div class="mt-4">
+      <%= component(:button,
+          variant: :outline,
+          href: list_search_feeds_path(query: params[:query]),
+          class_name: "w-full",
+          data: { turbo: false }
+        ) do %>
+        <%= t("search.feeds.index.show_more") %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

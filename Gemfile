@@ -23,6 +23,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "erb_lint", require: false
   gem "factory_bot_rails"
+  gem "rack-mini-profiler", require: false
   gem "rspec-rails"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false

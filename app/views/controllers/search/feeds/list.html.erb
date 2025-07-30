@@ -1,0 +1,44 @@
+<%= component("container/app") do %>
+  <div class="flex items-center gap-4 mb-6">
+    <%= link_to search_feeds_path, class: "flex items-center text-text-secondary hover:text-text-primary" do %>
+      <%= icon("chevron-left", css: "w-5 h-5") %>
+    <% end %>
+    <%= component(:heading, size: :h1, text: t(".title", query: params[:query])) %>
+  </div>
+
+  <% if @feeds.size.zero? %>
+    <div class="flex flex-col items-center justify-center mt-16">
+      <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
+        <%= icon("glass", css: "w-6 h-6") %>
+      </div>
+      <div class="mt-4">
+        <%= component(:heading, size: :h3, text: t("search.feeds.index.not_found")) %>
+      </div>
+    </div>
+  <% else %>
+    <div class="mb-4">
+      <div class="body-sm text-text-secondary">
+        <%= t(".feeds_count", count: @feeds.size) %>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-2">
+      <% @feeds.each do |feed| %>
+        <%= link_to search_feed_path(feed.slug), class: "flex gap-2 items-center p-4 border border-border rounded hover:bg-background-muted transition-colors", data: { turbo: false } do %>
+          <div class="flex items-center justify-center border border-border rounded p-2">
+            <%= icon("rss", css: "w-5 h-5") %>
+          </div>
+          <div class="flex-1">
+            <div class="body font-medium">
+              <%= feed.name %>
+            </div>
+            <% if feed.description.present? %>
+              <div class="body-sm text-text-secondary mt-1">
+                <%= feed.description %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

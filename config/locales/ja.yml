@@ -87,8 +87,12 @@ ja:
         title: フィードを検索
         placeholder: RSSのURLもしくはWebサイト名
         not_found: 見つかりませんでした
-        found: "%{count}件見つかりました"
+        found: "%{query}の検索結果"
         by_category: カテゴリから探す
+        show_more: もっと見る
+      list:
+        title: "%{query}の検索結果"
+        feeds_count: "%{count}件のフィードが見つかりました"
   date:
     abbr_day_names:
       - 日

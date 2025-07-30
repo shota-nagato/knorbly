@@ -1,4 +1,6 @@
 class Search::FeedsController < ApplicationController
+  before_action :set_feeds, only: [ :search, :list ]
+
   def index
   end
 
@@ -7,8 +9,6 @@ class Search::FeedsController < ApplicationController
   end
 
   def search
-    feeds = Source.rss.search(params[:query])
-
     respond_to do |format|
       format.turbo_stream do
         if params[:query].blank?
@@ -17,10 +17,20 @@ class Search::FeedsController < ApplicationController
           render turbo_stream: turbo_stream.update(
             :search_result,
             partial: "search/feeds/search_result",
-            locals: { feeds: feeds }
+            locals: { feeds: @feeds }
           )
         end
       end
     end
+  end
+
+  def list
+    redirect_to search_feeds_path if params[:query].blank?
+  end
+
+  private
+
+  def set_feeds
+    @feeds = Source.rss.search(params[:query])
   end
 end

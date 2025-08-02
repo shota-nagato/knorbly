@@ -12,6 +12,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+require "net/http"
+
 class Source < ApplicationRecord
   include Sluggable
 
@@ -31,5 +33,24 @@ class Source < ApplicationRecord
 
   def rss_url_required?
     rss?
+  end
+
+  def self.fetch_and_save_feed(url)
+    response = Net::HTTP.get(URI.parse(url))
+
+    parsed_data = Feedjira.parse(response)
+
+    feed = Source.rss.find_or_initialize_by(rss_url: url)
+
+    if feed.new_record?
+      feed.url = parsed_data.url
+      feed.name = parsed_data.title
+      feed.description = parsed_data.description
+      feed.save!
+    end
+
+    feed
+  rescue => e
+    nil
   end
 end

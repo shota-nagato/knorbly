@@ -43,6 +43,7 @@ group :development do
 end
 
 gem "dry-initializer"
+gem "feedjira"
 gem "tailwind_merge"
 gem "view_component"
 gem "view_component-contrib"

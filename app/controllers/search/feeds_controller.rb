@@ -1,5 +1,5 @@
 class Search::FeedsController < ApplicationController
-  before_action :set_feeds, only: [ :search, :list ]
+  include UrlValidation
 
   def index
   end
@@ -9,6 +9,15 @@ class Search::FeedsController < ApplicationController
   end
 
   def search
+    feeds = if valid_url?(params[:query])
+      feed = Source.fetch_and_save_feed(params[:query])
+      feed ? [ feed ] : []
+    else
+      Source.rss.search(params[:query])
+    end
+
+    feeds_count = feeds.count
+
     respond_to do |format|
       format.turbo_stream do
         if params[:query].blank?
@@ -17,7 +26,7 @@ class Search::FeedsController < ApplicationController
           render turbo_stream: turbo_stream.update(
             :search_result,
             partial: "search/feeds/search_result",
-            locals: { feeds: @feeds }
+            locals: { feeds: feeds_count > 5 ? feeds.limit(5) : feeds, feed_count: feeds_count }
           )
         end
       end
@@ -26,11 +35,7 @@ class Search::FeedsController < ApplicationController
 
   def list
     redirect_to search_feeds_path if params[:query].blank?
-  end
 
-  private
-
-  def set_feeds
     @feeds = Source.rss.search(params[:query])
   end
 end

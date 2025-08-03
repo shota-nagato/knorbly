@@ -1,8 +1,18 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'simplecov'
+require "webmock/rspec"
 
 SimpleCov.start 'rails'
+
+WebMock.disable_net_connect!(
+  allow: [
+    /172\.18\.0\.\d+/,
+    'selenium_chrome',
+    '127.0.0.1',
+    'localhost'
+  ]
+)
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

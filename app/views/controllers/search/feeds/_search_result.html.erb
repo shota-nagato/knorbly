@@ -6,15 +6,15 @@
   </div>
   <div class="mt-2 flex flex-col">
     <% feeds.each do |feed| %>
-      <%= link_to search_feed_path(feed.slug), class: "flex gap-2 items-center p-2 hover:bg-background", data: { turbo: false } do %>
+      <%= link_to search_feed_path(feed.slug), class: "flex gap-2 items-start p-2 hover:bg-background", data: { turbo: false } do %>
         <div class="flex items-center justify-center border border-border rounded">
           <%= icon("rss") %>
         </div>
-        <div class="flex items-center gap-1">
+        <div class="flex flex-col gap-1">
           <div class="body">
             <%= feed.name %>
           </div>
-          <div class="body-sm text-text-secondary">
+          <div class="body-xs text-text-secondary">
             <%= feed.description %>
           </div>
         </div>

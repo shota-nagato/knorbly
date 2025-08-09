@@ -22,7 +22,7 @@ module Sluggable
   def generate_slug
     source_value = send(self.class.slug_column)
     slug = if source_value.match?(/\p{Han}|\p{Hiragana}|\p{Katakana}/)
-      source_value.gsub(/[[:space:]]/, "")
+      source_value.gsub(/[[:space:].]/, "")
     else
       source_value.parameterize
     end

@@ -7,7 +7,7 @@
 #  name        :string           not null
 #  rss_url     :string
 #  slug        :string           not null
-#  source_type :integer          default(0), not null
+#  source_type :integer          default("rss"), not null
 #  url         :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -22,6 +22,8 @@ class Source < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :rss_url, presence: true, uniqueness: true, if: :rss_url_required?
+
+  has_many :items, dependent: :destroy
 
   enum :source_type, [ :rss ]
 
@@ -47,6 +49,8 @@ class Source < ApplicationRecord
       feed.name = parsed_data.title
       feed.description = parsed_data.description
       feed.save!
+
+      Feeds::SaveItemsJob.perform_later(feed)
     end
 
     feed

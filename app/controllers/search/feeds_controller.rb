@@ -7,9 +7,7 @@ class Search::FeedsController < ApplicationController
   def show
     @feed = Source.rss.find_by(slug: params[:slug])
 
-    # TODO: source保存時にarticlesも保存しておく
-    response = Net::HTTP.get(URI.parse(@feed.rss_url))
-    @articles = Feedjira.parse(response).entries
+    @articles = @feed.items.limit(20)
   end
 
   def search

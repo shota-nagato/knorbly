@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_25_115917) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_055616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,6 +21,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_115917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_folders_on_team_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "source_id"
+    t.string "title", null: false
+    t.string "summary"
+    t.string "url"
+    t.string "image_url"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_items_on_source_id"
   end
 
   create_table "sessions", force: :cascade do |t|

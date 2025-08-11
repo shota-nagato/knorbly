@@ -7,7 +7,7 @@
 #  name        :string           not null
 #  rss_url     :string
 #  slug        :string           not null
-#  source_type :integer          default(0), not null
+#  source_type :integer          default("rss"), not null
 #  url         :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

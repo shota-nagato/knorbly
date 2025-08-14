@@ -13,6 +13,6 @@
     "@hotwired/turbo-rails": "^8.0.16",
     "@rails/request.js": "^0.0.12",
     "@tailwindcss/cli": "^4.1.10",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.12"
   }
 }

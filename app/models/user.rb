@@ -19,6 +19,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
     return user if user

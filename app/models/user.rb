@@ -6,15 +6,36 @@
 #  email           :string           not null
 #  name            :string
 #  password_digest :string           not null
+#  provider        :string
+#  uid             :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email             (email) UNIQUE
+#  index_users_on_provider_and_uid  (provider,uid) UNIQUE
 #
 class User < ApplicationRecord
   has_secure_password
+
+  validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+
+  def self.from_omniauth(auth)
+    user = where(provider: auth.provider, uid: auth.uid).first
+    return user if user
+
+    user = where(email: auth.info.email).first_or_initialize do |u|
+      u.name = auth.info.name
+      u.password = SecureRandom.hex(15)
+    end
+
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.save!
+
+    user
+  end
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true

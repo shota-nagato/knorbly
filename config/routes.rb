@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   get "/signup", to: "registrations#new"
+  get "/auth/:provider/callback", to: "sessions#omniauth"
 
   resources :component_styles, only: %i[ index ]
 

@@ -50,3 +50,6 @@ gem "view_component"
 gem "view_component-contrib"
 
 gem "bcrypt", "~> 3.1"
+
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"

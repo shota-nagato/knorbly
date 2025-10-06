@@ -39,3 +39,7 @@
 /node_modules
 
 /coverage
+
+/config/credentials/development.key
+
+/config/credentials/production.key

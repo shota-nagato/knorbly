@@ -19,7 +19,21 @@
 class User < ApplicationRecord
   has_secure_password
 
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+  validates :name, length: { maximum: 20 }
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+
+  normalizes :email, with: ->(e) { e.strip.downcase }
+
+  has_many :sessions, dependent: :destroy
+  has_many :team_users, dependent: :destroy
+  has_many :teams, through: :team_users
+  has_many :owned_teams, class_name: "Team", foreign_key: :owner_id, inverse_of: :owner, dependent: :destroy
+
+  has_one_attached :avatar
+
+  after_create :create_default_team
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
@@ -32,23 +46,26 @@ class User < ApplicationRecord
 
     user.provider = auth.provider
     user.uid = auth.uid
+    user.attach_avatar_from_provider(auth)
     user.save!
 
     user
   end
 
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
-  validates :name, length: { maximum: 20 }
+  def attach_avatar_from_provider(auth)
+    return unless auth.info.image.present?
 
-  normalizes :email, with: ->(e) { e.strip.downcase }
+    url = auth.info.image
+    uri = URI.parse(url)
+    response = Net::HTTP.get_response(uri)
 
-  has_many :sessions, dependent: :destroy
-  has_many :team_users, dependent: :destroy
-  has_many :teams, through: :team_users
-  has_many :owned_teams, class_name: "Team", foreign_key: :owner_id, inverse_of: :owner, dependent: :destroy
+    file = StringIO.new(response.body)
+    avatar.attach(io: file, filename: File.basename(uri.path))
+  end
 
-  after_create :create_default_team
+  def avatar_string
+    name.present? ? name.first.upcase : email.first.upcase
+  end
 
   private
 

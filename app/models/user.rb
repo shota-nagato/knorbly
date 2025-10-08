@@ -36,19 +36,26 @@ class User < ApplicationRecord
   after_create :create_default_team
 
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, uid: auth.uid).first
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
     return user if user
 
-    user = where(email: auth.info.email).first_or_initialize do |u|
-      u.name = auth.info.name
-      u.password = SecureRandom.hex(15)
+    existing_user = User.find_by(email: auth.info.email)
+
+    if existing_user.present?
+      existing_user.update(provider: auth.provider, uid: auth.uid)
+      return existing_user
     end
 
-    user.provider = auth.provider
-    user.uid = auth.uid
+    user = User.new(
+      email: auth.info.email,
+      name: auth.info.name,
+      password: SecureRandom.hex(15),
+      provider: auth.provider,
+      uid: auth.uid
+    )
+
     user.attach_avatar_from_provider(auth)
     user.save!
-
     user
   end
 

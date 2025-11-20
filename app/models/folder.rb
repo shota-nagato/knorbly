@@ -24,6 +24,21 @@ class Folder < ApplicationRecord
 
   belongs_to :team
 
+  has_many :source_subscriptions, dependent: :destroy
+  has_many :sources, through: :source_subscriptions
+
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: { scope: :team_id }
+
+  def subscribe?(source)
+    sources.include?(source)
+  end
+
+  def subscribe!(source)
+    source_subscriptions.create!(source: source)
+  end
+
+  def unsubscribe!(source)
+    source_subscriptions.find_by!(source: source).destroy!
+  end
 end

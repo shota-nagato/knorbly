@@ -22,5 +22,35 @@
 require 'rails_helper'
 
 RSpec.describe SourceSubscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "factory" do
+    subject { build(:source_subscription) }
+
+    it "レコードを新規作成できる" do
+      expect(subject).to be_valid
+    end
+  end
+
+  describe "name" do
+    let(:source) { create(:source, name: "Source Title") }
+    let(:folder) { create(:folder) }
+    let(:folder_subscription) { create(:source_subscription, source:, folder:) }
+
+    it "sourceのnameを返す" do
+      expect(folder_subscription.name).to eq("Source Title")
+    end
+  end
+
+  describe "validation" do
+    let(:source) { create(:source) }
+    let(:folder) { create(:folder) }
+    let(:folder_subscription) { build(:source_subscription, source:, folder:) }
+
+    before do
+      create(:source_subscription, source:, folder:)
+    end
+
+    it "source_idとfolder_idの組み合わせがユニーク" do
+      expect(folder_subscription).to be_invalid
+    end
+  end
 end

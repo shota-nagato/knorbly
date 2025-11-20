@@ -21,6 +21,7 @@
 #
 FactoryBot.define do
   factory :source_subscription do
-    
+    association :source
+    association :folder
   end
 end

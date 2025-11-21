@@ -9,7 +9,25 @@
       <span class="body-sm text-text-muted">10 followers</span>
       <span class="body-sm text-text-muted">100 articles</span>
     </div>
-    <%= component(:button, size: :sm) { "follow" } %>
+    <%= component(:dropdown) do |dropdown| %>
+        <% dropdown.with_button do %>
+        <div id="feed-subscription-dropdown-button">
+          <%= icon("rss", css: "text-text-primary w-6 h-6") %>
+        </div>
+      <% end %>
+      <% dropdown.with_menu do %>
+        <ul class="flex flex-col gap-2">
+          <% current_team.folders.order(created_at: :desc).each do |folder| %>
+            <li class="flex items-center justify-between gap-4">
+              <div class="body-sm">
+                <%= folder.name %>
+              </div>
+              <%= render "source_subscriptions/button", folder: folder, source: @feed %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">

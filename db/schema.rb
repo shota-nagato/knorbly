@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_104347) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_20_221915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -72,6 +72,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_104347) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "source_subscriptions", force: :cascade do |t|
+    t.bigint "source_id", null: false
+    t.bigint "folder_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["folder_id", "source_id"], name: "index_source_subscriptions_on_folder_id_and_source_id", unique: true
+    t.index ["source_id"], name: "index_source_subscriptions_on_source_id"
+  end
+
   create_table "sources", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -117,6 +127,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_104347) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "folders", "teams"
   add_foreign_key "sessions", "users"
+  add_foreign_key "source_subscriptions", "folders"
+  add_foreign_key "source_subscriptions", "sources"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
   add_foreign_key "teams", "users", column: "owner_id"

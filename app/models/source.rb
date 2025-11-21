@@ -24,6 +24,8 @@ class Source < ApplicationRecord
   validates :rss_url, presence: true, uniqueness: true, if: :rss_url_required?
 
   has_many :items, dependent: :destroy
+  has_many :source_subscriptions, dependent: :destroy
+  has_many :folders, through: :source_subscriptions
 
   enum :source_type, [ :rss ]
 

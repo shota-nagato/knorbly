@@ -8,6 +8,6 @@ class CreateSourceSubscriptions < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :source_subscriptions, [:folder_id, :source_id], unique: true
+    add_index :source_subscriptions, [ :folder_id, :source_id ], unique: true
   end
 end

@@ -1,0 +1,82 @@
+<%= form_with(model: [:admin, source], class: "space-y-6") do |f| %>
+  <% if source.errors.any? %>
+    <div class="rounded-md bg-red-50 dark:bg-red-900 p-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800 dark:text-red-200">
+            <%= pluralize(source.errors.count, "error") %> prohibited this source from being saved:
+          </h3>
+          <div class="mt-2 text-sm text-red-700 dark:text-red-300">
+            <ul class="list-disc pl-5 space-y-1">
+              <% source.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <%= render Input::Component.new(
+      form: f,
+      label: "名前",
+      attribute_key: :name
+    ) %>
+  </div>
+
+  <div>
+    <%= render Input::Component.new(
+      form: f,
+      label: "Slug",
+      attribute_key: :slug
+    ) %>
+    <p class="mt-2 body-xs text-text-muted">URLの一部として使用されます。空白の場合は名前から自動生成されます。</p>
+  </div>
+
+  <div>
+    <%= render Input::Component.new(
+      form: f,
+      label: "説明",
+      attribute_key: :description,
+      field_type: :text_area
+    ) %>
+  </div>
+
+  <div>
+    <%= f.label :source_type, "タイプ", class: "body-sm text-text-secondary" %>
+    <div class="mt-1">
+      <%= f.select :source_type, Source.source_types.keys.map { |k| [k.humanize, k] }, {}, class: "flex w-full rounded bg-white border border-border shadow-sm focus:border-border-focus focus-visible:outline-none h-10 px-3 py-1.5" %>
+    </div>
+  </div>
+
+  <div>
+    <%= render Input::Component.new(
+      form: f,
+      label: "WebサイトURL",
+      attribute_key: :url,
+      field_type: :url_field
+    ) %>
+  </div>
+
+  <div>
+    <%= render Input::Component.new(
+      form: f,
+      label: "RSS URL",
+      attribute_key: :rss_url,
+      field_type: :url_field
+    ) %>
+    <p class="mt-2 body-xs text-text-muted">RSSフィードのURLを入力してください。</p>
+  </div>
+
+  <div class="flex justify-end">
+    <%= link_to "キャンセル", admin_sources_path, class: "bg-white py-2 px-4 border border-border rounded-md shadow-sm body-sm text-text-secondary hover:bg-object-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-focus-ring mr-3" %>
+    <%= f.submit "保存", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm body-sm rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-focus-ring" %>
+  </div>
+<% end %>

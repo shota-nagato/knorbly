@@ -1,0 +1,65 @@
+<div class="mb-6 flex justify-between items-center">
+  <h2 class="h2 text-text-primary">ソース管理</h2>
+  <%= link_to new_admin_source_path, class: "inline-flex items-center px-4 py-2 border border-transparent body-sm rounded-md shadow-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-focus-ring" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+    新規作成
+  <% end %>
+</div>
+
+<div class="bg-white shadow rounded-lg overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-border">
+      <thead class="bg-background-muted">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">ID</th>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">名前</th>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">タイプ</th>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">URL</th>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">RSS URL</th>
+          <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">作成日</th>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">操作</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-border">
+        <% @sources.each do |source| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <%= link_to admin_source_path(source), class: "px-2 inline-flex body-xs underline text-primary" do %>
+                <%= source.id %>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="body-sm text-text-primary"><%= source.name %></div>
+              <div class="body-xs text-text-muted"><%= source.slug %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex body-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                <%= source.source_type %>
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="body-sm text-primary hover:underline truncate max-w-xs">
+                <%= link_to source.url, source.url, target: "_blank" if source.url.present? %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="body-sm text-text-muted truncate max-w-xs">
+                <%= source.rss_url %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap body-sm text-text-muted">
+              <%= l source.created_at, format: :long %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right body-sm font-medium">
+              <%= link_to "編集", edit_admin_source_path(source), class: "text-primary hover:text-primary/80 mr-3" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

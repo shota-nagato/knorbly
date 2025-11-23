@@ -19,6 +19,9 @@
 class Item < ApplicationRecord
   belongs_to :source, optional: true
 
+  has_many :user_item_states, dependent: :destroy
+  has_many :users, through: :user_item_states
+
   validates :title, :url, presence: true
   validates :url, uniqueness: true
 end

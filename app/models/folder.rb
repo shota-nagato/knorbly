@@ -38,20 +38,12 @@ class Folder < ApplicationRecord
   def subscribe!(source)
     source_subscriptions.create!(source: source)
 
-    user_ids = team.users.ids
-    items_ids = source.items.ids
-
-    attributes = user_ids.product(items_ids).map do |user_id, item_id|
-      {
-        user_id: user_id,
-        item_id: item_id
-      }
-    end
-
-    UserItemState.insert_all(attributes) if attributes.present?
+    SaveUserItemStatesJob.perform_later(team, source)
   end
 
   def unsubscribe!(source)
     source_subscriptions.find_by!(source: source).destroy!
+
+    # TODO: user_item_statesをこの時点で削除するか、バッチ処理で削除するか検討する
   end
 end

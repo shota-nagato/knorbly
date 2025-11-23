@@ -20,6 +20,6 @@ FactoryBot.define do
   factory :item do
     association :source
     title { "テスト用記事" }
-    url { "http://example.com/articles/1" }
+    sequence(:url) { |n| "http://example.com/articles/#{n}" }
   end
 end

@@ -79,7 +79,9 @@ ja:
       delete: 削除
       confirm: 本当に削除しますか？
       no_feeds: フィードがフォローされていません
-      no_feeds_description: このフォルダでフィードをフォローして、情報を集めましょう
+      no_items: すべての記事を確認済みです
+      no_items_description: 新しい記事が追加されるまでしばらくお待ちください
+      no_feeds_description: このフォルダにフィードをフォローして、情報を集めましょう
       search_feeds: フィードを検索
   search:
     feeds:

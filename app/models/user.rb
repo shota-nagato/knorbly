@@ -30,6 +30,9 @@ class User < ApplicationRecord
   has_many :team_users, dependent: :destroy
   has_many :teams, through: :team_users
   has_many :owned_teams, class_name: "Team", foreign_key: :owner_id, inverse_of: :owner, dependent: :destroy
+  has_many :user_item_states, dependent: :destroy
+  has_many :items, through: :user_item_states
+  has_many :visible_items, -> { merge(UserItemState.visible) }, through: :user_item_states, source: :item
 
   has_one_attached :avatar
 

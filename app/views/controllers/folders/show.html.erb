@@ -24,20 +24,71 @@
     </div>
   </div>
 
-  <div class="mt-32">
-    <div class="flex flex-col items-center justify-center">
-      <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
-        <%= icon("rss", css: "w-6 h-6") %>
+  <div class="mt-8">
+    <% if @folder.source_subscriptions.any? %>
+      <% if @items.any? %>
+        <div class="flex flex-col gap-4">
+          <% @items.each do |item| %>
+            <%= link_to "#", class: "flex gap-4 items-start max-w-full" do %>
+              <div class="flex-shrink-0 lg:w-48 lg:h-32 w-32 h-24 relative">
+                <% if item.image_url.present? %>
+                  <%= image_tag item.image_url, class: "w-full h-full rounded object-cover shadow" %>
+                <% else %>
+                  <div class="w-full h-full rounded bg-muted shadow"></div>
+                <% end %>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="body-xs text-text-muted">
+                  <%= item.source.name %>
+                </div>
+                <div class="body line-clamp-2">
+                  <%= item.title %>
+                </div>
+                <div class="body-sm text-text-secondary">
+                  <%= item.summary %>
+                </div>
+                <div class="flex justify-between items-center">
+                  <div class="body-xs text-text-muted flex items-center gap-1">
+                    <%= icon("calendar", css: "w-3 h-3") %>
+                    <%= l item.published_at, format: :long %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex flex-col items-center justify-center mt-32">
+        <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
+          <%= icon("rss", css: "w-6 h-6") %>
+        </div>
+        <div class="mt-4">
+          <%= component(:heading, size: :h3, text: t(".no_items")) %>
+        </div>
+        <div class="mt-2">
+          <p class="body-sm text-text-muted">
+            <%= t(".no_items_description") %>
+          </p>
+        </div>
       </div>
-      <div class="mt-4">
-        <%= component(:heading, size: :h3, text: t(".no_feeds")) %>
+      <% end %>
+    <% else %>
+      <div class="flex flex-col items-center justify-center mt-32">
+        <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
+          <%= icon("rss", css: "w-6 h-6") %>
+        </div>
+        <div class="mt-4">
+          <%= component(:heading, size: :h3, text: t(".no_feeds")) %>
+        </div>
+        <div class="mt-2">
+          <p class="body-sm text-text-muted">
+            <%= t(".no_feeds_description") %>
+          </p>
+        </div>
+        <div class="mt-4">
+          <%= component(:button, href: search_feeds_path) { t(".search_feeds") } %>
+        </div>
       </div>
-      <div class="mt-2">
-        <p class="body-sm text-text-muted">このフォルダにフィードをフォローして、情報を集めましょう</p>
-      </div>
-      <div class="mt-4">
-        <%= component(:button, href: search_feeds_path) { t(".search_feeds") } %>
-      </div>
-    </div>
+    <% end %>
   </div>
 <% end %>

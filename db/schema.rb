@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_20_221915) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_22_032421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -111,6 +111,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_221915) do
     t.index ["owner_id"], name: "index_teams_on_owner_id"
   end
 
+  create_table "user_item_states", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "read_at"
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_user_item_states_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_user_item_states_on_user_id_and_item_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -132,4 +144,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_221915) do
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
   add_foreign_key "teams", "users", column: "owner_id"
+  add_foreign_key "user_item_states", "items"
+  add_foreign_key "user_item_states", "users"
 end

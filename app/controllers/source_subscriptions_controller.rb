@@ -14,7 +14,17 @@ class SourceSubscriptionsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(dom_id(@source, folder.id), partial: "controllers/source_subscriptions/button", locals: { source: @source, folder: folder })
+        render turbo_stream: [
+          turbo_stream.replace(
+            dom_id(@source, folder.id),
+            # TODO: ViewComponentに統一する
+            partial: "controllers/source_subscriptions/button", locals: { source: @source, folder: folder }
+          ),
+          turbo_stream.replace(
+            dom_id(folder),
+            FolderStats::Component.new(folder: folder).render_in(view_context)
+          )
+        ]
       end
     end
   end

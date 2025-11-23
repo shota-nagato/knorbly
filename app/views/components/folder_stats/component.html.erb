@@ -1,0 +1,12 @@
+<%= turbo_frame_tag dom_id(folder) do %>
+  <div class="flex items-center gap-1">
+    <div class="flex items-center gap-0.5">
+      <%= helpers.icon("rss", css: "w-4 h-4") %>
+      <%= folder.sources.count %>
+    </div>
+    <div class="flex items-center gap-0.5">
+      <%= helpers.icon("newspaper", css: "w-4 h-4") %>
+      <%= helpers.current_user.visible_items.merge(folder.items).count %>
+    </div>
+  </div>
+<% end %>

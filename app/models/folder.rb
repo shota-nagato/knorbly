@@ -26,6 +26,7 @@ class Folder < ApplicationRecord
 
   has_many :source_subscriptions, dependent: :destroy
   has_many :sources, through: :source_subscriptions
+  has_many :items, through: :sources
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: { scope: :team_id }

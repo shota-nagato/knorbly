@@ -20,7 +20,12 @@
         <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: "#") %>
 
         <% helpers.current_team.folders.each do |folder| %>
-          <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
+          <div class="relative">
+            <div class="absolute top-1.5 right-2 body-xs text-text-muted">
+              <%= component(:folder_stats, folder: folder) %>
+            </div>
+            <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
+          </div>
         <% end %>
       </div>
       <%= component(:button, variant: :link, href: new_folder_path, size: :sm, class_name: "px-2", data: { turbo_frame: "slide-over", action: "click->layout--sidebar--component#closeSidebar" }) do %>

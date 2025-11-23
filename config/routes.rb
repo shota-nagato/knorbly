@@ -37,5 +37,10 @@ Rails.application.routes.draw do
   get "/settings/profile", to: "settings/profiles#edit"
   get "/settings/team", to: "settings/teams#edit"
 
+  namespace :admin do
+    root to: "dashboard#index"
+    resources :sources
+  end
+
   root "static#index"
 end

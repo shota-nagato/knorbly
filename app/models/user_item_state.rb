@@ -5,7 +5,7 @@
 #  id          :bigint           not null, primary key
 #  archived_at :datetime
 #  read_at     :datetime
-#  status      :integer          default(0), not null
+#  status      :integer          default("unread"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  item_id     :bigint           not null

@@ -1,0 +1,149 @@
+<div class="mb-8">
+  <h2 class="h1 text-text-primary mb-6">ダッシュボード</h2>
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Users Card -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="body-sm text-text-muted">総ユーザー数</p>
+          <p class="h2 text-text-primary"><%= @users_count %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teams Card -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-green-100 text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="body-sm text-text-muted">総チーム数</p>
+          <p class="h2 text-text-primary"><%= @teams_count %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sources Card -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="body-sm text-text-muted">総ソース数</p>
+          <p class="h2 text-text-primary"><%= @sources_count %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Items Card -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="body-sm text-text-muted">総記事数</p>
+          <p class="h2 text-text-primary"><%= @items_count %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Recent Users -->
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+      <div class="px-6 py-4 border-b border-border">
+        <h3 class="h3 text-text-primary">最近登録したユーザー</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-border">
+          <thead class="bg-background-muted">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">ユーザー</th>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">メールアドレス</th>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">登録日</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-border">
+            <% @recent_users.each do |user| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-8 w-8">
+                      <% if user.respond_to?(:avatar) && user.avatar.attached? %>
+                        <%= image_tag user.avatar, class: "h-8 w-8 rounded-full" %>
+                      <% else %>
+                        <div class="h-8 w-8 rounded-full bg-background-muted flex items-center justify-center text-text-muted text-xs">
+                          <%= user.email.first.upcase %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="ml-4">
+                      <div class="body-sm text-text-primary"><%= user.name %></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="body-sm text-text-muted"><%= user.email %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap body-sm text-text-muted">
+                  <%= user.created_at.strftime("%Y/%m/%d %H:%M") %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Recent Sources -->
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+      <div class="px-6 py-4 border-b border-border">
+        <h3 class="h3 text-text-primary">最近追加されたソース</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-border">
+          <thead class="bg-background-muted">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">名前</th>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">URL</th>
+              <th scope="col" class="px-6 py-3 text-left body-xs text-text-muted uppercase tracking-wider">追加日</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-border">
+            <% @recent_sources.each do |source| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="body-sm text-text-primary"><%= source.name %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="body-sm text-primary hover:underline truncate max-w-xs">
+                    <%= link_to source.url, source.url, target: "_blank" if source.url.present? %>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap body-sm text-text-muted">
+                  <%= source.created_at.strftime("%Y/%m/%d %H:%M") %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

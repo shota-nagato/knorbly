@@ -11,23 +11,34 @@
 <div class="flex flex-col flex-1 justify-between" data-controller="layout--sidebar--component">
   <div class="mt-8">
     <div>
+      <%# ダッシュボード %>
       <%= component(:navigation_item, icon: "home", text: t(".dashboard"), path: dashboard_path) %>
+      <%# ソースを探す %>
       <%= component(:navigation_item, icon: "glass", text: t(".search"), path: search_feeds_path) %>
     </div>
     <div class="mt-4">
       <div class="body-xs text-text-inactive px-2">Feeds</div>
       <div class="mt-1">
-        <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: items_path) %>
+        <%# 全ての記事 %>
+        <div class="relative">
+          <div class="absolute top-1.5 right-2">
+            <%= component(:item_stats) %>
+          </div>
+          <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: items_path) %>
+        </div>
 
+        <%# フォルダごとの記事 %>
         <% helpers.current_team.folders.each do |folder| %>
           <div class="relative">
-            <div class="absolute top-1.5 right-2 body-xs text-text-muted">
-              <%= component(:folder_stats, folder: folder) %>
+            <div class="absolute top-1.5 right-2">
+              <%= component(:item_stats, folder: folder) %>
             </div>
             <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
           </div>
         <% end %>
       </div>
+
+      <%# フォルダ作成ボタン %>
       <%= component(:button, variant: :link, href: new_folder_path, size: :sm, class_name: "px-2", data: { turbo_frame: "slide-over", action: "click->layout--sidebar--component#closeSidebar" }) do %>
         <div class="flex items-center gap-1">
           <%= helpers.icon("folder-plus", css: "w-4 h-4") %>
@@ -36,6 +47,8 @@
       <% end %>
     </div>
   </div>
+
+  <%# ユーザーメニュー %>
   <%= component(:dropdown, direction: :right) do |dropdown| %>
     <% dropdown.with_button do %>
       <%= component(:profile) %>

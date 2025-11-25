@@ -22,7 +22,11 @@ class SourceSubscriptionsController < ApplicationController
           ),
           turbo_stream.replace(
             dom_id(folder),
-            FolderStats::Component.new(folder: folder).render_in(view_context)
+            ItemStats::Component.new(folder: folder).render_in(view_context)
+          ),
+          turbo_stream.replace(
+            "all_folders",
+            ItemStats::Component.new(folder: folder).render_in(view_context)
           )
         ]
       end

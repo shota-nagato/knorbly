@@ -23,6 +23,7 @@ class Team < ApplicationRecord
   has_many :users, through: :team_users
   has_many :folders, dependent: :destroy
   has_many :source_subscriptions, through: :folders
+  has_many :sources, through: :source_subscriptions
 
   validates :name, presence: true, length: { maximum: 20 }
 end

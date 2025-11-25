@@ -24,27 +24,59 @@
     </div>
   </div>
 
-  <div class="mt-8">
+  <div class="mt-4" data-controller="loading--component">
     <% if @folder.source_subscriptions.any? %>
-      <% if @items.any? %>
-        <div class="flex flex-col gap-4">
-          <%= component(:item, collection: @items) %>
-        </div>
-      <% else %>
-        <div class="flex flex-col items-center justify-center mt-32">
-        <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
-          <%= icon("rss", css: "w-6 h-6") %>
-        </div>
-        <div class="mt-4">
-          <%= component(:heading, size: :h3, text: t(".no_items")) %>
-        </div>
-        <div class="mt-2">
-          <p class="body-sm text-text-muted">
-            <%= t(".no_items_description") %>
-          </p>
-        </div>
+      <div class="flex justify-between items-center">
+        <div></div>
+        <%= form_with(
+          url: search_folder_items_path(@folder),
+          method: :post,
+          data: {
+            controller: "input--component",
+            input__component_target: "form",
+            action: "
+              turbo:submit-start->loading--component#displayLoading
+              turbo:submit-end->loading--component#hiddenLoading
+            "
+          }
+        ) do |form| %>
+          <%= component(
+            :input,
+            form: form,
+            attribute_key: :query,
+            placeholder: t(".search_placeholder"),
+            data: { action: "input->input--component#search" }
+          ) %>
+        <% end %>
       </div>
-      <% end %>
+
+      <div data-loading--component-target="loading" class="hidden">
+        <%= component(:loading) %>
+      </div>
+
+      <div class="mt-4">
+        <%= turbo_frame_tag :items_search_result, data: { loading__component_target: "content" } do %>
+          <% if @items.any? %>
+            <div class="flex flex-col gap-4">
+              <%= component(:item, collection: @items) %>
+            </div>
+          <% else %>
+            <div class="flex flex-col items-center justify-center mt-32">
+              <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">
+                <%= icon("rss", css: "w-6 h-6") %>
+              </div>
+              <div class="mt-4">
+                <%= component(:heading, size: :h3, text: t(".no_items")) %>
+              </div>
+              <div class="mt-2">
+                <p class="body-sm text-text-muted">
+                  <%= t(".no_items_description") %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     <% else %>
       <div class="flex flex-col items-center justify-center mt-32">
         <div class="w-12 h-12 rounded-full bg-background-muted flex items-center justify-center">

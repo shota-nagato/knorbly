@@ -29,3 +29,16 @@
 
 en:
   hello: "Hello world"
+  folders:
+    show:
+      search_placeholder: "Search articles"
+    items:
+      search:
+        not_found: "No results found"
+        found: "%{count} articles found"
+  items:
+    index:
+      search_placeholder: "Search articles"
+    search:
+      not_found: "No results found"
+      found: "%{count} articles found"

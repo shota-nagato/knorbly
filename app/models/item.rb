@@ -24,4 +24,11 @@ class Item < ApplicationRecord
 
   validates :title, :url, presence: true
   validates :url, uniqueness: true
+
+  def self.search(query)
+    return none if query.blank?
+
+    where(arel_table[:title].matches("%#{sanitize_sql_like(query)}%"))
+      .or(where(arel_table[:summary].matches("%#{sanitize_sql_like(query)}%")))
+  end
 end

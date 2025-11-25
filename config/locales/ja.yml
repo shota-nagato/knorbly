@@ -83,6 +83,11 @@ ja:
       no_items_description: 新しい記事が追加されるまでしばらくお待ちください
       no_feeds_description: このフォルダにフィードをフォローして、情報を集めましょう
       search_feeds: フィードを検索
+      search_placeholder: 記事を検索
+    items:
+      search:
+        not_found: 検索結果がありません
+        found: "%{count}件の記事が見つかりました"
   items:
     index:
       title: 全ての記事
@@ -91,6 +96,10 @@ ja:
       search_feeds: フィードを検索
       no_items: すべての記事を確認済みです
       no_items_description: 新しい記事が追加されるまでしばらくお待ちください
+      search_placeholder: 記事を検索
+    search:
+      not_found: 検索結果がありません
+      found: "%{count}件の記事が見つかりました"
   search:
     feeds:
       index:

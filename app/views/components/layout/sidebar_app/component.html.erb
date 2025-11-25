@@ -17,7 +17,7 @@
     <div class="mt-4">
       <div class="body-xs text-text-inactive px-2">Feeds</div>
       <div class="mt-1">
-        <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: "#") %>
+        <%= component(:navigation_item, icon: "rss", text: t(".all_feeds"), path: items_path) %>
 
         <% helpers.current_team.folders.each do |folder| %>
           <div class="relative">

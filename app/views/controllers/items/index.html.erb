@@ -1,31 +1,10 @@
 <%= component("container/app") do %>
   <div class="flex justify-between items-center">
-    <%= component(:heading, size: :h1, text: @folder.name) %>
-    <div>
-      <%= component(:dropdown) do |dropdown| %>
-        <% dropdown.with_button do %>
-          <div id="folder-dropdown-button">
-            <%= icon("elipsis-horizontal", css: "text-text-muted w-8 h-8") %>
-          </div>
-        <% end %>
-
-        <% dropdown.with_menu do %>
-          <%= link_to edit_folder_path(@folder), data: { turbo_frame: "slide-over" }, class: "flex items-center gap-2 text-text-muted whitespace-nowrap px-2 py-1 hover:bg-background-muted rounded" do %>
-            <%= icon("pencil-square", css: "w-5 h-5") %>
-            <span class="body-sm"><%= t(".edit") %></span>
-          <% end %>
-          <hr class="my-1 border-border">
-          <%= link_to folder_path(@folder), data: { turbo_method: :delete, turbo_confirm: t(".confirm") }, class: "flex items-center gap-2 text-alert whitespace-nowrap px-2 py-1 hover:bg-background-muted rounded" do %>
-            <%= icon("trash", css: "w-5 h-5") %>
-            <span class="body-sm"><%= t(".delete") %></span>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
+    <%= component(:heading, size: :h1, text: t(".title")) %>
   </div>
 
   <div class="mt-8">
-    <% if @folder.source_subscriptions.any? %>
+    <% if current_team.source_subscriptions.any? %>
       <% if @items.any? %>
         <div class="flex flex-col gap-4">
           <%= component(:item, collection: @items) %>

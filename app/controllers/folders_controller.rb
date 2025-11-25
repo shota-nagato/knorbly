@@ -2,7 +2,7 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: [ :show, :edit, :update, :destroy ]
 
   def show
-    @items = current_user.visible_items.eager_load(:source).where(source: @folder.sources)
+    @items = current_user.visible_items.merge(@folder.items).preload(:source)
   end
 
   def new

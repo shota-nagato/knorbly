@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "dashboard#index", as: :dashboard
 
+  resources :items, only: %i[ index ]
+
   resources :folders, param: :slug
   resources :sources do
     resources :source_subscriptions, only: %i[ create ]

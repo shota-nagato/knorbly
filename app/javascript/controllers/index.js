@@ -7,6 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import SortableController from "./sortable_controller"
+application.register("sortable", SortableController)
+
 import Toast__ComponentController from "./../../views/components/toast/component_controller"
 application.register("toast--component", Toast__ComponentController)
 

@@ -77,6 +77,7 @@ ja:
     show:
       edit: 編集
       delete: 削除
+      sources: ソース管理
       confirm: 本当に削除しますか？
       no_feeds: フィードがフォローされていません
       no_items: すべての記事を確認済みです
@@ -88,6 +89,10 @@ ja:
       search:
         not_found: 検索結果がありません
         found: "%{count}件の記事が見つかりました"
+    sources:
+      index:
+        title: ソース管理
+        back_to_folder: フォルダに戻る
   items:
     index:
       title: 全ての記事

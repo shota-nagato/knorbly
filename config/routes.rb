@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         post :search
       end
     end
+    resources :sources, module: :folders, only: %i[ index ]
   end
 
   resources :sources do

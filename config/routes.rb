@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :folders, param: :slug do
+    resource :position, module: :folders, only: %i[ update ]
     resources :items, module: :folders do
       collection do
         post :search

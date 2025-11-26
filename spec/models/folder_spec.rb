@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
+#  position   :integer          default(0), not null
 #  slug       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -11,7 +12,8 @@
 #
 # Indexes
 #
-#  index_folders_on_team_id  (team_id)
+#  index_folders_on_team_id               (team_id)
+#  index_folders_on_team_id_and_position  (team_id,position) UNIQUE
 #
 # Foreign Keys
 #

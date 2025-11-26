@@ -28,14 +28,26 @@
         </div>
 
         <%# フォルダごとの記事 %>
-        <% helpers.current_team.folders.each do |folder| %>
-          <div class="relative">
-            <div class="absolute top-1.5 right-2">
-              <%= component(:item_stats, folder: folder) %>
+        <div data-controller="sortable">
+          <% helpers.current_team.folders.order(:position).each do |folder| %>
+            <div class="relative group" data-sortable-url="<%= folder_position_path(folder) %>">
+              <div class="absolute top-1.5 right-2">
+                <%= component(:item_stats, folder: folder) %>
+              </div>
+              <%= link_to folder_path(folder), class: class_names("flex items-center gap-2 hover:bg-object-hover px-2 py-1 rounded", { "bg-object-active": request.path == folder_path(folder) }) do %>
+                <div class="relative w-4 h-4">
+                  <div class="absolute inset-0 group-hover:opacity-0 transition-opacity">
+                    <%= helpers.icon("folder", css: "w-4 h-4 text-text-muted") %>
+                  </div>
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 cursor-grab transition-opacity" data-sortable-handle>
+                    <%= helpers.icon("grip-vertical", css: "w-4 h-4 text-text-inactive") %>
+                  </div>
+                </div>
+                <div class="body-sm text-text-muted"><%= folder.name %></div>
+              <% end %>
             </div>
-            <%= component(:navigation_item, icon: "folder", text: folder.name, path: folder_path(folder)) %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
 
       <%# フォルダ作成ボタン %>

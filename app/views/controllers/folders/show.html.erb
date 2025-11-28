@@ -62,7 +62,9 @@
         <%= turbo_frame_tag :items_search_result, data: { loading__component_target: "content" } do %>
           <% if @items.any? %>
             <div class="flex flex-col gap-4">
-              <%= component(:item, collection: @items) %>
+              <% @items.each do |item| %>
+                <%= component(:item, item: item, user_item_state: @user_item_states[item.id]) %>
+              <% end %>
             </div>
           <% else %>
             <div class="flex flex-col items-center justify-center mt-32">

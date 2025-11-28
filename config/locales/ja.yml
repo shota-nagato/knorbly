@@ -1,4 +1,9 @@
 ja:
+  user_item_states:
+    read: 既読
+    mark_as_read: 既読にする
+    mark_as_unread: 未読にする
+    archive: アーカイブ
   activerecord:
     models:
       user: ユーザー

@@ -18,14 +18,32 @@ class UserItemStatesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
+        streams = []
+
         if @user_item_state.archived?
-          render turbo_stream: turbo_stream.remove(dom_id(@item, :item_card))
+          streams << turbo_stream.remove(dom_id(@item, :item_card))
         else
-          render turbo_stream: turbo_stream.replace(
+          streams << turbo_stream.replace(
             dom_id(@item, :item_card),
             Item::Component.new(item: @item, user_item_state: @user_item_state)
           )
         end
+
+        # フォルダの統計を更新
+        @item.source.folders.each do |folder|
+          streams << turbo_stream.replace(
+            dom_id(folder),
+            ItemStats::Component.new(folder: folder).render_in(view_context)
+          )
+        end
+
+        # all_foldersの統計を更新
+        streams << turbo_stream.replace(
+          "all_folders",
+          ItemStats::Component.new.render_in(view_context)
+        )
+
+        render turbo_stream: streams
       end
     end
   end

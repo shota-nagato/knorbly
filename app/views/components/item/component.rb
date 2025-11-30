@@ -2,7 +2,7 @@
 
 class Item::Component < ApplicationViewComponent
   option :item
-  option :user_item_state, optional: true
+  option :user_item_state
 
   with_collection_parameter :item
 end

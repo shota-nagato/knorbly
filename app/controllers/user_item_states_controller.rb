@@ -55,6 +55,6 @@ class UserItemStatesController < ApplicationController
   end
 
   def set_user_item_state
-    @user_item_state = current_user.user_item_states.find_or_create_by!(item: @item)
+    @user_item_state = current_user.user_item_states.find_by(item: @item)
   end
 end

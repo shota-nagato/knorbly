@@ -3,6 +3,7 @@ class FoldersController < ApplicationController
 
   def show
     @items = current_user.visible_items.merge(@folder.items).preload(:source)
+    @user_item_states = current_user.user_item_states.where(item: @items).index_by(&:item_id)
   end
 
   def new

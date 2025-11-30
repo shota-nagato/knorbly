@@ -35,6 +35,10 @@ class UserItemState < ApplicationRecord
     update!(status: :read, read_at: Time.current)
   end
 
+  def mark_as_unread!
+    update!(status: :unread, read_at: nil)
+  end
+
   def mark_as_archived!
     update!(status: :archived, archived_at: Time.current)
   end

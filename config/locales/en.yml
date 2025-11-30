@@ -29,6 +29,11 @@
 
 en:
   hello: "Hello world"
+  user_item_states:
+    read: Read
+    mark_as_read: Mark as read
+    mark_as_unread: Mark as unread
+    archive: Archive
   folders:
     show:
       search_placeholder: "Search articles"

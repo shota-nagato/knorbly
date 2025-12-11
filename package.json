@@ -11,7 +11,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.20",
-    "@rails/request.js": "^0.0.12",
+    "@rails/request.js": "^0.0.13",
     "@tailwindcss/cli": "^4.1.14",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^4.1.14"
